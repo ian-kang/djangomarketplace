@@ -1,6 +1,7 @@
+---
 language: python
 deploy:
 provider: heroku
 api_key:
-	secure: "1dcb1535-b6d4-4136-b36a-9ada91124f24"
+    secure: "1dcb1535-b6d4-4136-b36a-9ada91124f24"
 app: icraig-team-m
