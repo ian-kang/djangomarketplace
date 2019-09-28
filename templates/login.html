@@ -1,0 +1,39 @@
+*  REFERENCES
+*  Title: Building a custom Google Sign-In button
+*  Author: n/a
+*  Date: Accessed September 28, 2019
+*  Code version: n/a
+*  URL: https://developers.google.com/identity/sign-in/web/build-button
+*  Software License:  Creative Commons Attribution 4.0 License
+*
+*
+
+<html>
+<head>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<body>
+  <div id="my-signin2"></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>
