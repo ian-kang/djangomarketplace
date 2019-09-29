@@ -4,5 +4,10 @@ from django.shortcuts import render
 def index(request):
     return render(request,"base.html")
 
+
+def furniture(request):
+    return render(request,"furniture.html")
+
 def login(request):
     return render(request,"login.html")
+
