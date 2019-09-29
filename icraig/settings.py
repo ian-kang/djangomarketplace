@@ -9,6 +9,16 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+/***************************************************************************************
+*  REFERENCES
+*  Title: How to add Google and Github OAuth in Django
+*  Author: Mohit
+*  Date: Accessed 9/29/2019
+*  Code version:
+*  URL: https://fosstack.com/how-to-add-google-authentication-in-django/
+*  Software License: none found
+***************************************************************************************/
+
 
 import os
 import django_heroku
