@@ -1,1 +1,62 @@
-<h1>Hello World!</h1>
+{% comment %}
+
+Create_Listing Form
+
+{% endcomment %}
+
+{% block content %}
+<form action="/create_listing/" method="post">{% csrf_token %}
+
+    <!-- *title -->
+    <div class="fieldWrapper">
+        <label for="title">Title</label>
+        {{ form.title }}
+    </div>
+
+    <br>
+
+    <!-- *category -->
+    <div class="fieldWrapper">
+        <label for="category">Category</label>
+        {{ form.category }}
+    </div>
+
+    <br>
+
+    <!-- condition -->
+    <div class="fieldWrapper">
+        <label for="condition">Condition</label>
+        {{ form.condition }}
+    </div>
+
+    <br>
+
+    <!-- price -->
+    <div class="fieldWrapper">
+        <label for="price">Price</label>
+        {{ form.price }}
+
+    </div>
+
+    <br>
+
+    <!-- description -->
+    <div class="fieldWrapper">
+        <label for="description">Description</label>
+        {{ form.description }}
+    </div>
+
+    <br>
+
+    <!-- description -->
+    <div class="fieldWrapper">
+ 	<label for="images">Image Upload</label>
+	{{ form.images }}
+    </div>
+
+    <br>
+
+    <input type="submit" value="Submit">
+
+</form>
+{% endblock %}

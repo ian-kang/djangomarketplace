@@ -1,0 +1,20 @@
+{% comment %}
+
+Create_Listing Form
+
+{% endcomment %}
+
+{% block content %}
+
+<form action= "/polls/suggestions/" method="post">
+    {% csrf_token %}
+    Title: {{form.title}}
+    <br>
+    <br>
+    Description: {{form.description}}
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
