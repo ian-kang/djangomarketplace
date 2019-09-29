@@ -22,7 +22,7 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('craigslist.urls')),
-    url(r'^login/$', views.LoginView, name='login'),
-    url(r'^logout/$', views.LogoutView, name='logout'),
+    url(r'^login/$', views.LoginView.as_view(), name='login'),
+    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
