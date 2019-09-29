@@ -31,6 +31,6 @@ class CreateListingView(FormView):
         args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':desrciption, 'images':images}
         return render(request, 'create_listing.html', args)
 
-    
+
 #    def form_valid(self, form):
 #        return HttpResponse("Sweeeeeet.")
