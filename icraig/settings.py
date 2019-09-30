@@ -10,6 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+"""
+/***************************************************************************************
+*  REFERENCES
+*  Title: How to add Google and Github OAuth in Django
+*  Author: Mohit
+*  Date: Accessed 9/29/2019
+*  Code version:
+*  URL: https://fosstack.com/how-to-add-google-authentication-in-django/
+*  Software License: none found
+***************************************************************************************/
+"""
+
 import os
 import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django' #added for authentication
 ]
 
 MIDDLEWARE = [
@@ -63,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', #added for authentication
+                'social_django.context_processors.login_redirect',#added for authentication
             ],
         },
     },
@@ -81,6 +96,13 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+ 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+ 'social_core.backends.google.GoogleOpenId',  # for Google authentication
+ 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+ 
+ 'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -119,5 +141,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+django_heroku.settings(locals())
 
 django_heroku.settings(locals())
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '200446462519-9nrggfc8md7q62k485tbsiikbm6ds465.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'N8zOCeL-kNMss9rgwhYS6iuG'
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
