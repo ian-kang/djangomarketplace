@@ -8,5 +8,14 @@
 </head>
 <body>
     <p>test</p>
+    <h1>Hello World!</h1>
+
+    {% block content %}
+	      {% if user.is_authenticated %}
+            <p class="display-4">Hello, {{ user.username }}</p>
+	      {% else %}
+            <a class="lead" href="{% url 'login' %}">Log in</a>
+	      {% endif %}
+    {% endblock content %}
 </body>
 </html>
