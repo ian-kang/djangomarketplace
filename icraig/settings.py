@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+
+"""
 /***************************************************************************************
 *  REFERENCES
 *  Title: How to add Google and Github OAuth in Django
@@ -18,7 +20,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 *  URL: https://fosstack.com/how-to-add-google-authentication-in-django/
 *  Software License: none found
 ***************************************************************************************/
-
+"""
 
 import os
 import django_heroku
@@ -138,6 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+django_heroku.settings(locals())
 
 django_heroku.settings(locals())
 
