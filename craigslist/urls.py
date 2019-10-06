@@ -8,4 +8,6 @@ urlpatterns = [
     path('lostandfound/', views.lafView, name='laf'),
     path('textbooks/', views.textbookView, name='textbook'),
     path('furniture', views.furniture, name='furniture'),
+    path('login', views.LoginView.as_view(), name='login'),
+    
 ]

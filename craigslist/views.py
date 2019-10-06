@@ -5,6 +5,9 @@ from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse
 from django.views.generic import FormView
+from django.contrib.auth import logout as auth_logout
+from django.shortcuts import redirect
+
 
 from .models import CreateListing
 from .forms import CreateListingForm
@@ -43,5 +46,16 @@ def textbookView(request):
 def furniture(request):
     return render(request,"furniture.html")
 
-def login(request):
-    return render(request,"login.html")
+#def login(request):
+#    return render(request,"login.html")
+
+class LoginView(generic.TemplateView):
+    template_name = "login.html"
+
+#def logout(request):
+ #   auth_logout(request)
+  #  return redirect('/')
+
+#def redirect_view(request):
+   # response = redirect('/redirect-success/')
+   # return response
