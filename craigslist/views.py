@@ -31,7 +31,7 @@ class CreateListingView(FormView):
         if form.is_valid():
             new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images)
             new_listing.save()
-        args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':desrciption, 'images':images}
+        args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images}
         return render(request, 'create_listing.html', args)
 
 
@@ -46,16 +46,16 @@ def textbookView(request):
 def furniture(request):
     return render(request,"furniture.html")
 
-#def login(request):
-#    return render(request,"login.html")
-
 class LoginView(generic.TemplateView):
     template_name = "login.html"
 
-#def logout(request):
- #   auth_logout(request)
-  #  return redirect('/')
+class LogoutView(generic.TemplateView):
+    template_name = "base.html"
 
-#def redirect_view(request):
-   # response = redirect('/redirect-success/')
-   # return response
+def Logout(request):
+    auth_logout(request)
+    return redirect("base.html")
+
+def redirect_view(request):
+    response = redirect('/redirect-success/')
+    return response

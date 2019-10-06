@@ -22,8 +22,8 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('craigslist.urls')),
-    #path('login', views.LoginView.as_view(), name='login'),
-    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+    #url(r^'login', auth_views.login name='login'),
+    #url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),  
     #url(r'^logout/$', 'django_social_app.views.logout'),
     #path('/redirect/', redirect_view)
