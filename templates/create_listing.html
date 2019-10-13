@@ -1,12 +1,14 @@
-{% comment %}
-
-Create_Listing Form
-
-{% endcomment %}
+{% extends 'navbar.html' %}
 
 {% block content %}
-<form action="/create_listing/" method="post">{% csrf_token %}
 
+{% if message %}
+   <h4> {{ message }} </h4>
+{% endif %}
+
+<br> 
+<form action= "/create_listing/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+	
     <!-- *title -->
     <div class="fieldWrapper">
         <label for="title">Title</label>
@@ -59,4 +61,5 @@ Create_Listing Form
     <input type="submit" value="Submit">
 
 </form>
+
 {% endblock %}

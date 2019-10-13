@@ -1,55 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <title>Base</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">
-                {% block content %}
-                {% if user.is_authenticated %}
-                <p class="display-4">Hello, {{ user.username }}</p>
-                {% else %}
-                <a style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Log in</a>
-                {% endif %}
-                {% endblock content %}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+{% extends 'navbar.html' %}
+{% load static %}
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/lostandfound">Lost and Found</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/textbooks">Textbooks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/furniture">Furniture</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-        </nav>
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to iCraig!</h1>
-            <p class="lead">iCraig is a community driven online marketplace for UVA students. Post an item for sale or browse and make a purchase.</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Random Listing</a>
-            </p>
+<!DOCTYPE html>
+<html>
+
+{% block content %}
+
+<head>
+
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="{% static 'js/sidebar.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" type="text/css" />
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="md-form mt-0">
+  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+</div>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <!-- Title <h3>Bootstrap Sidebar</h3> -->
         </div>
-    </body>
+
+        <ul class="list-unstyled components">
+            <!-- Heading <p>Dummy Heading</p> -->
+	    <li>
+                <a href="#sortSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sort</a>
+                <ul class="collapse list-unstyled" id="sortSubmenu">
+                    <li>
+                        <a href="#">Date Posted</a>
+                    </li>
+                    <li>
+                        <a href="#">Price: Lowest First</a>
+                    </li>
+                    <li>
+                        <a href="#">Price: Highest First</a>
+                    </li>
+                    <li>
+                        <a href="#">Distance</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Category</a>
+                <ul class="collapse list-unstyled" id="categorySubmenu">
+                    <li>
+                        <a href="#">Textbooks</a>
+                    </li>
+                    <li>
+                        <a href="#">Furniture</a>
+                    </li>
+                    <li>
+                        <a href="#">Housing</a>
+                    </li>
+		    <li>
+                        <a href="#">Services</a>
+                    </li>
+		    <li>
+                        <a href="#">Gigs</a>
+                    </li>
+		    <li>
+                        <a href="#">Lost & Found</a>
+                    </li>
+		    <li>
+                        <a href="#">Misc. Items</a>
+                    </li>
+                </ul>
+	     </li>
+    </nav>
+
+</div>
+
+{% endblock %}
+
+</body>
 </html>
