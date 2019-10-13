@@ -105,7 +105,13 @@
                 </div>
               </nav>
               <ul class="list-group">
-                <li class="list-group-item">add stuff here</li>
+                {% if itemlist %}
+                {% for item in itemlist %}
+                <li class="list-group-item"> {{item.title}} </li>
+                {% endfor %}
+                {% else %}
+                <p> No listings available </p>
+                {% endif %}
               </ul>
             
         </div>
