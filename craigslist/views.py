@@ -8,35 +8,12 @@ from django.views.generic import FormView
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import redirect
 
-
 from .models import Listing
 from .forms import ListingForm
 
 # Create your views here.
 def index(request):
     return render(request,"welcome.html")
-
-"""
-class CreateListingView(FormView):
-    template_name = 'create_listing.html'
-    form_class = CreateListingForm
-
-    def save_listing(self, request):
-
-        title = request.POST['title']
-        category = request.POST['category']
-        condition = request.POST['category']
-        price = request.POST['price']
-        description = request.POST['description']
-        images = request.POST['images']
-        print('asdfaoishdfhiasdfih')
-        print(form.is_valid())
-        if form.is_valid():
-            new_listing = Listing(title=title, category=category, condition=condition, price=price, description=description, images=images)
-            new_listing.save()
-        args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images}
-        return render(request, 'create_listing.html', args)
-"""
     
 def create_listing(request):
     if request.method == 'POST':
@@ -48,8 +25,6 @@ def create_listing(request):
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
 
-#    def form_valid(self, form):
-#        return HttpResponse("Sweeeeeet.")
 def itemlist(request):
     return render(request, "itemlist.html")
 
