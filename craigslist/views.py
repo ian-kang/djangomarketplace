@@ -20,13 +20,20 @@ def create_listing(request):
         form = ListingForm(request.POST)
         if form.is_valid():
             new_listing = form.save()
-            return render(request, 'itemlist.html')
+            return redirect('/s/')
     else:
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
 
 def itemlist(request):
     return render(request, "itemlist.html")
+
+class ItemList(generic.ListView):
+    template_name = "itemlist.html"
+    context_object_name = "itemlist"
+
+    def get_queryset(self):
+        return Listing.objects.all()
 
 class LoginView(generic.TemplateView):
     template_name = "login.html"
