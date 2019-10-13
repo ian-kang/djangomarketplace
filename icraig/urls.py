@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include,path
+from django.urls import include, path
 from django.conf.urls import url, include
 from django.contrib.auth import views
 #from craigslist.views import redirect_view
@@ -22,7 +22,8 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('craigslist.urls')),
-    #url(r^'login', auth_views.login name='login'),
+    path('accounts/', include('django.contrib.auth.urls')), #new
+    #url(r^'login', auth_views.login, name='login'),
     #url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),  
     #url(r'^logout/$', 'django_social_app.views.logout'),
