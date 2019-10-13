@@ -5,6 +5,9 @@ from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse
 from django.views.generic import FormView
+from django.contrib.auth import logout as auth_logout
+from django.shortcuts import redirect
+
 
 from .models import CreateListing
 from .forms import CreateListingForm
@@ -28,7 +31,7 @@ class CreateListingView(FormView):
         if form.is_valid():
             new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images)
             new_listing.save()
-        args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':desrciption, 'images':images}
+        args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images}
         return render(request, 'create_listing.html', args)
 
 
@@ -37,5 +40,16 @@ class CreateListingView(FormView):
 def itemlist(request):
     return render(request, "itemlist.html")
 
-def login(request):
-    return render(request,"login.html")
+class LoginView(generic.TemplateView):
+    template_name = "login.html"
+
+class LogoutView(generic.TemplateView):
+    template_name = "base.html"
+
+def Logout(request):
+    auth_logout(request)
+    return redirect("base.html")
+
+def redirect_view(request):
+    response = redirect('/redirect-success/')
+    return response
