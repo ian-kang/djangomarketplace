@@ -15,7 +15,8 @@
             <a class="navbar-brand" href="#">
                 {% block content %}
                 {% if user.is_authenticated %}
-                <p class="display-4">Hello, {{ user.username }}</p>
+                Hi {{ user.username }}!
+                <p><a style="color: white; margin-right: 10px" class="lead"href="{% url 'logout' %}">Logout</a></p>
                 {% else %}
                 <a style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Log in</a>
                 {% endif %}
