@@ -1,5 +1,5 @@
 from django import forms
-from .models import CreateListing
+from .models import Listing
 
 CONDITIONS = (
     ('NEW', 'New'),
@@ -19,7 +19,7 @@ CATEGORIES = (
     ('OTHER', 'Other'),
 )
 
-class CreateListingForm(forms.ModelForm):
+class ListingForm(forms.ModelForm):
 
     category = forms.ChoiceField(choices=CATEGORIES, required=True )
     condition = forms.ChoiceField(choices=CONDITIONS, required=True )
@@ -32,7 +32,7 @@ class CreateListingForm(forms.ModelForm):
 
     class Meta:
         title = forms.TextInput()
-        model = CreateListing
+        model = Listing
         fields = ['title', 'price', 'description', 'images', 'category', 'condition',]
 
         widgets = {

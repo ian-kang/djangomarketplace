@@ -3,19 +3,20 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import FormView
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import redirect
 
 
-from .models import CreateListing
-from .forms import CreateListingForm
+from .models import Listing
+from .forms import ListingForm
 
 # Create your views here.
 def index(request):
     return render(request,"welcome.html")
 
+"""
 class CreateListingView(FormView):
     template_name = 'create_listing.html'
     form_class = CreateListingForm
@@ -28,12 +29,24 @@ class CreateListingView(FormView):
         price = request.POST['price']
         description = request.POST['description']
         images = request.POST['images']
+        print('asdfaoishdfhiasdfih')
+        print(form.is_valid())
         if form.is_valid():
-            new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images)
+            new_listing = Listing(title=title, category=category, condition=condition, price=price, description=description, images=images)
             new_listing.save()
         args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images}
         return render(request, 'create_listing.html', args)
-
+"""
+    
+def create_listing(request):
+    if request.method == 'POST':
+        form = ListingForm(request.POST)
+        if form.is_valid():
+            new_listing = form.save()
+            return render(request, 'itemlist.html')
+    else:
+        form = ListingForm()
+    return render(request, 'create_listing.html', {'form': form})
 
 #    def form_valid(self, form):
 #        return HttpResponse("Sweeeeeet.")
