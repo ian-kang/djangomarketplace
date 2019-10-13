@@ -14,7 +14,7 @@ from .forms import CreateListingForm
 
 # Create your views here.
 def index(request):
-    return render(request,"base.html")
+    return render(request,"welcome.html")
 
 class CreateListingView(FormView):
     template_name = 'create_listing.html'
@@ -37,14 +37,8 @@ class CreateListingView(FormView):
 
 #    def form_valid(self, form):
 #        return HttpResponse("Sweeeeeet.")
-def lafView(request):
-    return render(request, "lostandfound.html")
-  
-def textbookView(request):
-    return render(request, "textbooks.html")
-
-def furniture(request):
-    return render(request,"furniture.html")
+def itemlist(request):
+    return render(request, "itemlist.html")
 
 class LoginView(generic.TemplateView):
     template_name = "login.html"

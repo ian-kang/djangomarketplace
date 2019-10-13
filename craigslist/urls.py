@@ -10,4 +10,6 @@ urlpatterns = [
     path('furniture', views.furniture, name='furniture'),
     path('login', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('s/', views.itemlist, name='itemlist'),
+
 ]

@@ -7,6 +7,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <title>Base</title>
+        {% block staticfiles %}
+        {% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -27,15 +29,6 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/lostandfound">Lost and Found</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/textbooks">Textbooks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/furniture">Furniture</a>
-                        </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -43,13 +36,9 @@
                     </form>
                 </div>
         </nav>
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to iCraig!</h1>
-            <p class="lead">iCraig is a community driven online marketplace for UVA students. Post an item for sale or browse and make a purchase.</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Random Listing</a>
-            </p>
-        </div>
+        {% block wrapper %}
+        {% endblock %}
+        {% block pagecontent %}
+        {% endblock %}
     </body>
 </html>
