@@ -102,19 +102,35 @@
                         </ul>
                     </div>
                 </div>
-              </nav>
+			</nav>
 
-              <input type="checkbox" class="checkbox" value="Simplified View">Simplified View</input>
-
-              <ul class="list-group">
-                {% if itemlist %}
-                {% for item in itemlist %}
-                <li class="list-group-item"> {{item.title}}</li>
-                {% endfor %}
-                {% else %}
-                <p> No listings available </p>
-                {% endif %}
-              </ul>
+			<input type="checkbox" class="checkbox" value="Simplified View">Simplified View</input>
+			<table class="table-hover">
+				<tr><td>Image</td><td>Item</td><td>Description</td></tr>
+				{% if itemlist %}
+				{% for item in itemlist %}
+				<tr>
+					<td>
+						<img 
+						style="width: 245px; height: 247px;"
+ 						src="{{item.images}}"/></td>
+					<td>{{item.title}}</td>
+					<td>{{item.description}}</td>
+				</tr>
+				{% endfor %}
+				{% else %}
+				{% endif %}	
+			</table>
+			<!--<ul class="list-group">
+					{% if itemlist %}
+					{% for item in itemlist %}
+					<li class="list-group-item"> {{item.title}}</li>             
+					{% endfor %}
+					{% else %}
+					<p> No listings available </p>
+					{% endif %}
+				</ul>
+				-->
             
         </div>
         
