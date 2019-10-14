@@ -12,7 +12,7 @@
 
 {% block content %}
 {% if user and not user.is_anonymous %}
-<a href="/logout">Logout</a>
+<a href="/">Logout</a>
 <link href="{% static 'css/signin.css'}" rel='stylesheet'>
 {% else %}
   <h2>Login</h2>
