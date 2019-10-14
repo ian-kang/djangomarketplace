@@ -104,21 +104,23 @@
                 </div>
 			</nav>
 
+			<!-- New -->
 			<input type="checkbox" class="checkbox" value="Simplified View">Simplified View</input>
 			{% if itemlist %}
-			<table class="table-hover">
+			<table class="table table-hover">
 				<tr><td>Image</td><td>Item</td><td>Description</td></tr>
 				{% for item in itemlist %}
 				<tr>
 					<td>
 						<img 
 						style="width: 245px; height: 247px;"
- 						src="{{item.images}}"/></td>
+ 						src="{{item.images.url}}"/></td>
 					<td>{{item.title}}</td>
 					<td>{{item.description}}</td>
 				</tr>
 				{% endfor %}
 			</table>
+			<!-- /New -->
 				{% else %}
 					<p> No listings available</p>
 				{% endif %}	
