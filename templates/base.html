@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/itemlist.css' %}" type="text/css" />
         <title>Base</title>
         {% block staticfiles %}
         {% endblock %}
@@ -16,9 +18,9 @@
                 {% block content %}
                 {% if user.is_authenticated %}
                 Hi {{ user.username }}!
-                <p><a style="color: white; margin-right: 10px" class="lead"href="{% url 'logout' %}">Logout</a></p>
+                <a class="nav-link" style="color: white; margin-right: 10px" class="lead"href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                <a style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Log in</a>
+                <a class="nav-link" style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Log in</a>
                 {% endif %}
                 {% endblock content %}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
