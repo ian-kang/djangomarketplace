@@ -28,7 +28,7 @@ class Listing(models.Model):
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
     posted = models.DateTimeField(auto_now_add=True)
-    images = models.ImageField(upload_to='images/', blank=True)
+    images = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.title
