@@ -20,7 +20,7 @@ CATEGORIES = (
     ('OTHER', 'Other'),
 )
 
-class CreateListing(models.Model):
+class Listing(models.Model):
 
     title = models.CharField(max_length=200)
     category = models.CharField(max_length=15, choices=CATEGORIES)
@@ -28,7 +28,7 @@ class CreateListing(models.Model):
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
     posted = models.DateTimeField(auto_now_add=True)
-    images = models.ImageField(upload_to='images/', blank=True)
+    images = models.ImageField(upload_to='images/')
 
     def __str__(self):
-        return self.choice_text
+        return self.title

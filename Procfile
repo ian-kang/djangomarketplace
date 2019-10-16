@@ -1,1 +1,1 @@
-web: gunicorn icraig.wsgi
+web: python manage.py migrate && gunicorn icraig.wsgi

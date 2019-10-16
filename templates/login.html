@@ -7,7 +7,14 @@
 *  URL: https://developers.google.com/identity/sign-in/web/build-button
 *  Software License:  Creative Commons Attribution 4.0 License
 -->
+
+
+
 {% block content %}
+{% if user and not user.is_anonymous %}
+<a href="/">Logout</a>
+<link href="{% static 'css/signin.css'}" rel='stylesheet'>
+{% else %}
   <h2>Login</h2>
   <form method="post">
     {% csrf_token %}
@@ -17,4 +24,5 @@
    <br>
   <p><strong>-- OR --</strong></p>
   <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+  {% endif %}
 {% endblock %}

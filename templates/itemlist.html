@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -8,24 +10,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>{% block title %}{% endblock %}</title>
+    {% block staticfiles %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="{% static 'js/itemlist.js' %}"></script>
     <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/itemlist.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.css' %}" type="text/css" />
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    {% endblock %}
 </head>
 
 <body>
+    {% block wrapper %}
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>{% block itemtype %}{% endblock %}</h3>
+                <h3>Options</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -59,12 +63,15 @@
                     </ul>
                 </li>
                 <li>
-                  <a href="#" id = "datepicker">Date lost</a>
+                    <a href="#locationMenu">Include Services</a>
+                <li>
+                  <a href="#" id = "datepicker">Date listed</a>
                 </li>
                     
             </ul>
         </nav>
-
+        {% endblock %}
+        {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -97,11 +104,20 @@
                 </div>
               </nav>
               <ul class="list-group">
-                <li class="list-group-item">add stuff here</li>
+                {% if itemlist %}
+                {% for item in itemlist %}
+                <li class="list-group-item"> {{item.title}} </li>
+                {% endfor %}
+                {% else %}
+                <p> No listings available </p>
+                {% endif %}
               </ul>
+            
         </div>
         
+  
     </div>
+    {% endblock %}
     <script type="text/javascript">
       $("#datepicker").datetimepicker({
         format: "dd MM yyyy",
