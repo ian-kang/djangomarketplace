@@ -19,11 +19,19 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views
+
 #from craigslist.views import redirect_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('craigslist.urls')),
+  
+    # - Unsure [From 'Updated Homepage']  -
+    #url(r'^login/$', views.LoginView.as_view(), name='login'),
+    #url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+    #url(r'^auth/', include('social_django.urls', namespace='social')),
+    # /-Unsure -
+  
     path('accounts/', include('django.contrib.auth.urls')), #new
     #url(r^'login', auth_views.login, name='login'),
     #url(r'^logout/$', auth_views.logout, name='logout'),

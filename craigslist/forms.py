@@ -23,7 +23,7 @@ class ListingForm(forms.ModelForm):
 
     category = forms.ChoiceField(choices=CATEGORIES, required=True )
     condition = forms.ChoiceField(choices=CONDITIONS, required=True )
-    images = forms.ImageField(),
+    images = forms.ImageField()
 
     #title = forms.TextInput(attrs={'placeholder': ' What are you selling? '})
     #price = forms.NumberInput(attrs={'placeholder': 'How much do you want? '})
@@ -39,7 +39,6 @@ class ListingForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'placeholder': ' What are you selling? '}),
             'price': forms.NumberInput(attrs={'placeholder': 'How much do you want? ', 'style':'width:23ch'}),
             'description': forms.Textarea(attrs={'placeholder': ' Provide details '}),
-            
         #    'images': forms.ImageField(),
         #    #need timestamp
         }
