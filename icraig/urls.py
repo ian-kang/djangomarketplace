@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.auth import views
 #from craigslist.views import redirect_view
 
@@ -29,3 +31,5 @@ urlpatterns = [
     #url(r'^logout/$', 'django_social_app.views.logout'),
     #path('/redirect/', redirect_view)
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

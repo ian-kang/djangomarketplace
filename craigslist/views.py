@@ -17,9 +17,9 @@ def index(request):
     
 def create_listing(request):
     if request.method == 'POST':
-        form = ListingForm(request.POST)
+        form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
-            new_listing = form.save()
+            form.save()
             return redirect('/s/')
     else:
         form = ListingForm()

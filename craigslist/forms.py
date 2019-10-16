@@ -39,6 +39,7 @@ class ListingForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'placeholder': ' What are you selling? '}),
             'price': forms.NumberInput(attrs={'placeholder': 'How much do you want? ', 'style':'width:23ch'}),
             'description': forms.Textarea(attrs={'placeholder': ' Provide details '}),
+            
         #    'images': forms.ImageField(),
         #    #need timestamp
         }
