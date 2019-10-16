@@ -14,8 +14,9 @@
                 
                 {% if user.is_authenticated %}
                 <p class="display-4">Hello, {{ user.username }}</p>
+		<a class="nav-link" style="color: white; margin-right: 10px" class="lead"href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                <a style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Log in</a>
+                <a class="nav-link" style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Log in</a>
                 {% endif %}
                 </a>
 
