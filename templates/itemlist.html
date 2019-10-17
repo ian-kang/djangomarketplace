@@ -123,7 +123,7 @@
 			
 			{% if itemlist %}
 			<table class="table table-hover">
-				<tr><td>Image</td><td>Item</td><td>Description</td></tr>
+				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td></tr>
 				{% for item in itemlist %}
 				<tr>
 					<td>
@@ -131,6 +131,7 @@
 						style="width: 200px; height: 200px;"
  						src="{{item.images.url}}"/></td>
 					<td>{{item.title}}</td>
+                    <td>{{item.price}}</td>
 					<td>{{item.description}}</td>
 				</tr>
 				{% endfor %}
