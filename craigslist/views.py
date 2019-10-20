@@ -6,10 +6,14 @@ from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import FormView
 from django.contrib.auth import logout as auth_logout
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 
 from .models import Listing
 from .forms import ListingForm
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegisterForm
 
 # Create your views here.
 def index(request):
@@ -59,6 +63,9 @@ class LoginView(generic.TemplateView):
 class LogoutView(generic.TemplateView):
     template_name = "base.html"
 
+class profile(generic.TemplateView):
+    template_name = "profile.html"
+
 def Logout(request):
     auth_logout(request)
     return redirect("base.html")
@@ -66,3 +73,15 @@ def Logout(request):
 def redirect_view(request):
     response = redirect('/redirect-success/')
     return response
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Your account has been created! You are now able to log in')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html', {'form': form})
