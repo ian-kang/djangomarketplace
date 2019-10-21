@@ -31,13 +31,13 @@ urlpatterns = [
     #url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
     #url(r'^auth/', include('social_django.urls', namespace='social')),
     # /-Unsure -
-  
     path('accounts/', include('django.contrib.auth.urls')), #new
     #url(r^'login', auth_views.login, name='login'),
     #url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),  
     #url(r'^logout/$', 'django_social_app.views.logout'),
     #path('/redirect/', redirect_view)
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
