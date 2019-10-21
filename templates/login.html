@@ -11,6 +11,8 @@
 
 
 {% block content %}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% if user and not user.is_anonymous %}
 <a href="/">Logout</a>
 <link href="{% static 'css/signin.css'}" rel='stylesheet'>
@@ -19,6 +21,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit">Login</button>
   </form>
    <br>

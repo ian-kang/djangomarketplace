@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django' #added for authentication
+    'social_django', #added for authentication
+    'crispy_forms', #added to easily build, customize, and reuse forms
 ]
 
 MIDDLEWARE = [
