@@ -74,6 +74,7 @@
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
+            <!-- Unsure if this is still necessary here after homepage update, but still kept it in case it was
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
 
@@ -84,7 +85,7 @@
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                    <!-- Pages? -->
+                    <-- Pages? --
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
@@ -102,17 +103,43 @@
                         </ul>
                     </div>
                 </div>
-              </nav>
-              <ul class="list-group">
-                {% if itemlist %}
-                {% for item in itemlist %}
-                <li class="list-group-item"> {{item.title}} </li>
-                {% endfor %}
-                {% else %}
-                <p> No listings available </p>
-                {% endif %}
-              </ul>
+			</nav>
+            -->
+			<!-------------------- New -------------------->
+			
+            <div id="modifier-wrapper"> <!-- Things that modify the listing should results go in here -->
+
+                <div id="simplify">
+                    <p id="simple-text">Simple View</p>
+                    <!-- Rounded switch -->
+                    <label class="switch" id="simple-view">
+                        <input type="checkbox" id='simple-check'>
+                        <span class="slider round"></span>
+                    </label>    
+                </div>
+                
             
+            </div>
+			
+			{% if itemlist %}
+			<table class="table table-hover">
+				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td></tr>
+				{% for item in itemlist %}
+				<tr>
+					<td>
+						<img 
+						style="width: 200px; height: 200px;"
+ 						src="{{item.images.url}}"/></td>
+					<td>{{item.title}}</td>
+                    <td>{{item.price}}</td>
+					<td>{{item.description}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<!-------------------- /New -------------------->
+				{% else %}
+					<p> No listings available</p>
+				{% endif %}	
         </div>
         
   
