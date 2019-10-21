@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),  
     #url(r'^logout/$', 'django_social_app.views.logout'),
     #path('/redirect/', redirect_view)
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

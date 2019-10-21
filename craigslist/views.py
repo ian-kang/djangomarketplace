@@ -9,11 +9,10 @@ from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect
 
 from .models import Listing
-from .forms import ListingForm
+from .forms import ListingForm, UserUpdateForm, ProfleUpdateForm, User, UserRegisterForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
 
 # Create your views here.
 def index(request):
@@ -63,7 +62,7 @@ class LoginView(generic.TemplateView):
 class LogoutView(generic.TemplateView):
     template_name = "base.html"
 
-class profile(generic.TemplateView):
+class Profile(generic.TemplateView):
     template_name = "profile.html"
 
 def Logout(request):
@@ -85,3 +84,16 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+
+@login_required
+def profile(request):
+    u_form = UserUpdateForm()
+    p_form = ProfleUpdateForm()
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'icraig/profile.html', context)
