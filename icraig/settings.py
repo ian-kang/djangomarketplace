@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'crispy_forms', #added to easily build, customize, and reuse forms
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

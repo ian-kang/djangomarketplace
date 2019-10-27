@@ -1,69 +1,26 @@
-{% extends 'navbar.html' %}
-
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 10px">
+            {% if user and not user.is_anonymous %}
+            <div style="margin-top: 10px; text-align: center">
+                <h1> Create Listing </h1>
+            </div>
+            <form action= "/create_listing/" method="POST" enctype="multipart/form-data">
 
+                {% csrf_token %}
+            
+                {{ form|crispy }}
 
-<!-- <form method="post" enctype="multipart/form-data">{% csrf_token %} -->
-
-
-{% if message %}
-   <h4> {{ message }} </h4>
-{% endif %}
-
-<br> 
-<form action= "/create_listing/" method="POST" enctype="multipart/form-data">{% csrf_token %}
-	
-    <!-- *title -->
-    <div class="fieldWrapper">
-        <label for="title">Title</label>
-        {{ form.title }}
+                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Submit</button>
+            </form>
+            {% else %}
+            <h2 style="text-align: center; margin-top: 10px"> You must be logged in to create a listing </h2>
+            {% endif %}
+        </div>
     </div>
-
-    <br>
-
-    <!-- *category -->
-    <div class="fieldWrapper">
-        <label for="category">Category</label>
-        {{ form.category }}
-    </div>
-
-    <br>
-
-    <!-- condition -->
-    <div class="fieldWrapper">
-        <label for="condition">Condition</label>
-        {{ form.condition }}
-    </div>
-
-    <br>
-
-    <!-- price -->
-    <div class="fieldWrapper">
-        <label for="price">Price</label>
-        {{ form.price }}
-
-    </div>
-
-    <br>
-
-    <!-- description -->
-    <div class="fieldWrapper">
-        <label for="description">Description</label>
-        {{ form.description }}
-    </div>
-
-    <br>
-
-    <!-- description -->
-    <div class="fieldWrapper">
- 	<label for="images">Image Upload</label>
-	{{ form.images }}
-    </div>
-
-    <br>
-
-    <input type="submit" value="Submit">
-
-</form>
+</div>
 
 {% endblock %}
