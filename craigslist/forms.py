@@ -24,27 +24,50 @@ CATEGORIES = (
 
 class ListingForm(forms.ModelForm):
 
-    category = forms.ChoiceField(choices=CATEGORIES, required=True )
-    condition = forms.ChoiceField(choices=CONDITIONS, required=True )
-    images = forms.ImageField()
+    title = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'What are you selling?',
+            'style': 'width:50ch'
+        }
+    ))
 
-    #title = forms.TextInput(attrs={'placeholder': ' What are you selling? '})
-    #price = forms.NumberInput(attrs={'placeholder': 'How much do you want? '})
-    #description = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":20, 'placeholder': ' Provide details '})),
-    #need timestamp
+    price = forms.DecimalField(required=True, widget=forms.NumberInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'How much do you want?',
+            'style': 'width:25ch'
+        }
+    ))
+
+    category = forms.ChoiceField(choices=CATEGORIES, required=True, widget=forms.Select(
+        attrs={
+            'class' : 'bootstrap-select',
+        }
+    ))
+
+    condition = forms.ChoiceField(choices=CONDITIONS, required=True, widget=forms.Select(
+        attrs={
+            'class' : 'bootstrap-select', #rounded_list
+        }
+    ))
+
+    description = forms.CharField(required=True, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Provide details about the item.',
+            'style': 'width:50ch'
+        }
+    ))
+
+    images = forms.ImageField(required=False)
 
     class Meta:
-        title = forms.TextInput()
+
         model = Listing
+
         fields = ['title', 'price', 'description', 'images', 'category', 'condition',]
 
-        widgets = {
-            'title': forms.TextInput(attrs={'placeholder': ' What are you selling? '}),
-            'price': forms.NumberInput(attrs={'placeholder': 'How much do you want? ', 'style':'width:23ch'}),
-            'description': forms.Textarea(attrs={'placeholder': ' Provide details '}),
-        #    'images': forms.ImageField(),
-        #    #need timestamp
-        }
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -61,7 +84,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 class ProfleUpdateForm(forms.ModelForm):
-    
+
     class Meta:
         model = Profile
         fields = ['image']
