@@ -1,68 +1,81 @@
-{% extends 'navbar.html' %}
-
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 10px">
 
+        	{% if message %}
+			<h4> {{ message }} </h4>
+			{% endif %}
+			
+            {% if user and not user.is_anonymous %}
+            <div style="margin-top: 10px; text-align: center">
+                <h1> Create Listing </h1>
+            </div>
 
-<!-- <form method="post" enctype="multipart/form-data">{% csrf_token %} -->
+            <form action= "/create_listing/" method="POST" enctype="multipart/form-data">
 
-{% if message %}
-   <h4> {{ message }} </h4>
-{% endif %}
+                {% csrf_token %}
+            
+                {{ form|crispy }}
 
-<br> 
-<form action= "/create_listing/" method="POST" enctype="multipart/form-data">{% csrf_token %}
-	
-    <!-- *title -->
-    <div class="form-group">
-        <label for="title">Title</label>
-        {{ form.title }}
+                <!-- *title -->
+			    <div class="form-group">
+			        <label for="title">Title</label>
+			        {{ form.title }}
+			    </div>
+
+			    <br>
+
+			    <!-- *category -->
+			    <div class="form-group">
+			        <label for="category">Category</label>
+			        {{ form.category }} 
+			    </div>
+
+			    <br>
+
+			    <!-- condition -->
+			    <div class="form-group">
+			        <label for="condition">Condition</label>
+			        {{ form.condition }}
+			    </div>
+
+			    <br>
+
+			    <!-- price -->
+			    <div class="form-group">
+			        <label for="price">Price</label>
+			        {{ form.price }}
+
+			    </div>
+
+			    <br>
+
+			    <!-- description -->
+			    <div class="form-group">
+			        <label for="description">Description</label>
+			        {{ form.description }}
+			    </div>
+
+			    <br>
+
+			    <!-- images-->
+			    <div class="form-group">
+			 	<label for="images">Image Upload</label>
+				{{ form.images }}
+			    </div>
+
+			    <br>
+
+                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Submit</button>
+            </form>
+            {% else %}
+            <h2 style="text-align: center; margin-top: 10px"> You must be logged in to create a listing </h2>
+            {% endif %}
+        </div>
     </div>
-
-    <br>
-
-    <!-- *category -->
-    <div class="form-group">
-        <label for="category">Category</label>
-        {{ form.category }} 
-    </div>
-
-    <br>
-
-    <!-- condition -->
-    <div class="form-group">
-        <label for="condition">Condition</label>
-        {{ form.condition }}
-    </div>
-
-    <br>
-
-    <!-- price -->
-    <div class="form-group">
-        <label for="price">Price</label>
-        {{ form.price }}
-
-    </div>
-
-    <br>
-
-    <!-- description -->
-    <div class="form-group">
-        <label for="description">Description</label>
-        {{ form.description }}
-    </div>
-
-    <br>
-
-    <!-- images-->
-    <div class="form-group">
- 	<label for="images">Image Upload</label>
-	{{ form.images }}
-    </div>
-
-    <br>
-
-    <input class="btn btn-primary" type="submit" value="Submit">
-
-</form>
+</div>
 
 {% endblock %}
