@@ -62,7 +62,7 @@ class LoginView(generic.TemplateView):
 class LogoutView(generic.TemplateView):
     template_name = "base.html"
 
-class Profile(generic.TemplateView):
+class ProfileView(generic.TemplateView):
     template_name = "profile.html"
 
 def Logout(request):
