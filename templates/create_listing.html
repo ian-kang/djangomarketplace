@@ -16,16 +16,18 @@
                 <h1> Create Listing </h1>
             </div>
 
-            <form action= "/create_listing/" method="POST" enctype="multipart/form-data">
+            <form action= "/create_listing/" method="POST" enctype="multipart/form-data" onchange="a()">
 
                 {% csrf_token %}
             
                 {{ form|crispy }}
 
-                
 			    <br>
 
-                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Submit</button>
+                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" onclick="output()">Submit</button>
+                <script type="text/javascript">
+                    document.getElementById('id_acct').value = '{{user.username}}';
+                </script>
             </form>
             {% else %}
             <h2 style="text-align: center; margin-top: 10px"> You must be logged in to create a listing </h2>

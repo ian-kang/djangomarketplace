@@ -69,7 +69,7 @@
 			
 			{% if itemlist %}
 			<table class="table table-hover">
-				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td></tr>
+				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td><td>Posted By</td></tr>
 				{% for item in itemlist %}
 				<tr>
 					<td >
@@ -79,6 +79,7 @@
 					<td>{{item.title}}</td>
                     <td>{{item.price}}</td>
 					<td>{{item.description}}</td>
+                    <td>{{item.acct}}</td>
 				</tr>
 				{% endfor %}
 			</table>

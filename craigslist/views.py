@@ -41,10 +41,11 @@ def save_listing(request):
         price = request.POST['price']
         description = request.POST['description']
         images = request.POST['images']
+        acct = request.POST['acct']
 
-        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images)
+        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images, acct=acct)
         new_listing.save()
-    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images}
+    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
 
