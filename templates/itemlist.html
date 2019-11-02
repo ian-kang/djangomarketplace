@@ -69,18 +69,18 @@
 			
 			{% if itemlist %}
 			<table class="table table-hover">
-				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td><td>Posted By</td></tr>
+				<tr><td>Image</td><td>Item</td><td>Price</td><td>Posted By</td></tr>
 				{% for item in itemlist %}
-				<tr href="/{{user.username}}/{{item.listing_id}}"> <!-- Add an onclick event to go to /profile/listing_id -->
+				<tr href="/{{item.acct}}/{{item.listing_id}}"> <!-- Add an onclick event to go to /profile/listing_id -->
 					<td>
 						<img class = "listImage"
 						style="width: 200px; height: 200px;"
- 						src="{{item.images.url}}"/></td>
+ 						src="{{item.images.url}}"
+                        href="/{{user.username}}/{{item.listing_id}}"/></td>
 					<td>{{item.title}}</td>
                     <td>{{item.price}}</td>
-					<td>{{item.description}}</td>
                     <td>{{item.acct}}</td>
-                    <td><a class="nav-link" href="/{{user.username}}/{{item.listing_id}}">Link</a></td>
+                    <td><a class="nav-link" href="/{{item.acct}}/{{item.listing_id}}">Link</a></td>
 				</tr>
 				{% endfor %}
 			</table>
