@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from datetime import datetime
 
 # Create your models here.
 
@@ -26,6 +27,7 @@ class Listing(models.Model):
 
     title = models.CharField(max_length=200)
     acct = models.CharField(max_length=20) # Hidden field to keep track of who posted what
+    listing_id = models.CharField(max_length=50, default=str(datetime.now()).replace("-", "").replace(" ", "")) # Unique id for each listing
     category = models.CharField(max_length=15, choices=CATEGORIES)
     condition = models.CharField(max_length=25, choices=CONDITIONS)
     price = models.IntegerField(default=0)

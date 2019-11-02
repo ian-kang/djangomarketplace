@@ -16,7 +16,7 @@
                 <h1> Create Listing </h1>
             </div>
 
-            <form action= "/create_listing/" method="POST" enctype="multipart/form-data" onchange="a()">
+            <form action= "/create_listing/" method="POST" enctype="multipart/form-data">
 
                 {% csrf_token %}
             
@@ -24,9 +24,9 @@
 
 			    <br>
 
-                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" onclick="output()">Submit</button>
+                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Submit</button>
                 <script type="text/javascript">
-                    document.getElementById('id_acct').value = '{{user.username}}';
+                    document.getElementById('id_acct').value = '{{user.username}}'; //Ties Listing to account that posted it
                 </script>
             </form>
             {% else %}

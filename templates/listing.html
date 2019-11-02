@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>Listing Page</title>
     {% block staticfiles %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
@@ -27,7 +27,7 @@
 <body>
     {% block wrapper %}
     <div class="wrapper">
-        <!-- Sidebar  -->
+        <!-- Sidebar  --
         <nav id="sidebar">
 
             <ul class="list-unstyled components">
@@ -52,40 +52,21 @@
                 </li>
                     
             </ul>
-        </nav>
+        </nav> -->
         {% endblock %}
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
-            <div id="modifier-wrapper"> <!-- Things that modify the listing should results go in here -->
-
-                <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Condensed view</label>
-                </div>
-                
             
-            </div>
 			
-			{% if itemlist %}
-			<table class="table table-hover">
-				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td></tr>
-				{% for item in itemlist %}
-				<tr>
-					<td >
-						<img class = "listImage"
-						style="width: 200px; height: 200px;"
- 						src="{{item.images.url}}"/></td>
-					<td>{{item.title}}</td>
-                    <td>{{item.price}}</td>
-					<td>{{item.description}}</td>
-				</tr>
-				{% endfor %}
-			</table>
-			<!-------------------- /New -------------------->
-				{% else %}
-					<p> No listings available</p>
-				{% endif %}	
+			{% if listing %}
+                <h1>{{listing.title}}</h1>
+                <img class = "listImage" style="width: 500px; height: 500px;" src="{{listing.images.url}}"/>
+                <h2>{{listing.description}}</h2>
+
+			{% else %}
+				<p>Something strange happened to this listing</p>
+			{% endif %}
         </div>
         
   

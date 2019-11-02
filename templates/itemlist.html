@@ -71,8 +71,8 @@
 			<table class="table table-hover">
 				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td><td>Posted By</td></tr>
 				{% for item in itemlist %}
-				<tr>
-					<td >
+				<tr href="/{{user.username}}/{{item.listing_id}}"> <!-- Add an onclick event to go to /profile/listing_id -->
+					<td>
 						<img class = "listImage"
 						style="width: 200px; height: 200px;"
  						src="{{item.images.url}}"/></td>
@@ -80,6 +80,7 @@
                     <td>{{item.price}}</td>
 					<td>{{item.description}}</td>
                     <td>{{item.acct}}</td>
+                    <td><a class="nav-link" href="/{{user.username}}/{{item.listing_id}}">Link</a></td>
 				</tr>
 				{% endfor %}
 			</table>
