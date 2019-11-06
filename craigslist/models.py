@@ -32,7 +32,7 @@ class Listing(models.Model):
             .replace("-", "")
             .replace(" ", "")
             .replace(":", "")
-            .replace(".", "")) # Unique id for each listing
+            .replace(".", "")) # Unique id for each listing. Basically a big ass number. Formatting is shit, feel free to fix
     category = models.CharField(max_length=15, choices=CATEGORIES)
     condition = models.CharField(max_length=25, choices=CONDITIONS)
     price = models.IntegerField(default=0)
