@@ -4,13 +4,11 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect
-
 from .models import Listing
 from .forms import ListingForm, UserUpdateForm, ProfleUpdateForm, User, UserRegisterForm
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -31,6 +29,9 @@ def create_listing(request):
 def itemlist(request):
     return render(request, "itemlist.html")
 
+def listingview(request):
+    return render(request, "listing.html")
+
 
 def save_listing(request):
     form = CreateListingForm(request.POST)
@@ -41,10 +42,11 @@ def save_listing(request):
         price = request.POST['price']
         description = request.POST['description']
         images = request.POST['images']
+        acct = request.POST['acct']
 
-        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images)
+        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images, acct=acct)
         new_listing.save()
-    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images}
+    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
 
@@ -55,6 +57,14 @@ class ItemList(generic.ListView):
     def get_queryset(self):
         return Listing.objects.all()
 
+class ListingView(generic.TemplateView):
+    template_name = "listing.html"
+    context_object_name = "listingview"
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        data['listing'] = Listing.objects.get(listing_id=kwargs['id'])
+        return data
 
 class LoginView(generic.TemplateView):
     template_name = "login.html"
@@ -64,6 +74,9 @@ class LogoutView(generic.TemplateView):
 
 class ProfileView(generic.TemplateView):
     template_name = "profile.html"
+
+class ForeignProfileView(generic.TemplateView): # For viewing other users' profile pages
+    template_name = "foreign_profile.html"
 
 def Logout(request):
     auth_logout(request)
