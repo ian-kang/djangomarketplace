@@ -49,7 +49,7 @@ class Listing(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, unique = True, null = False, db_index = True, on_delete=models.CASCADE)
     bio = models.TextField(max_length = 300, blank=True)
-    location = models.CharField(max_legnth=50, blank=True)
+    location = models.CharField(max_length=50, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
