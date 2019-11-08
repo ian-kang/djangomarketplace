@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from datetime import datetime
+from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -44,11 +47,14 @@ class Listing(models.Model):
         return self.title
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, unique = True, null = False, db_index = True, on_delete=models.CASCADE)
+    bio = models.TextField(max_length = 300, blank=True)
+    location = models.CharField(max_legnth=50, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return self.user.username
 
     def save(self):
         super().save()
@@ -59,3 +65,19 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+@receiver(post_save, sender=User)
+def create_user_profle(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+class Post(models.Model):
+    user = models.TextField(max_length=200)
+    title = models.TextField(max_length=200)
+    description = models.TextField(max_length=1000)
+    def __str__(self):
+        return self.title
