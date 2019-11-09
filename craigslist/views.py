@@ -79,7 +79,7 @@ class ProfileView(generic.TemplateView):
     template_name = "profile.html"
 
 class LocationView(generic.TemplateView):
-    template_name = "location.html"
+    template_name = "locations.html"
 
 class ForeignProfileView(generic.TemplateView): # For viewing other users' profile pages
     template_name = "foreign_profile.html"
