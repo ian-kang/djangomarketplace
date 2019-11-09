@@ -26,18 +26,6 @@ def create_listing(request):
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
 
-def itemlist(request):
-    return render(request, "itemlist.html")
-
-def listingview(request):
-    return render(request, "listing.html")
-
-def profileview(request, user):
-    data = {}
-    data['listing'] = Listing.objects.get(acct=user)
-    context_object_name = 'listings'
-    return render(request, "profile.html", data)
-
 def save_listing(request):
     form = CreateListingForm(request.POST)
     if form.is_valid():

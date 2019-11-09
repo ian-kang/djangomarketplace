@@ -43,8 +43,9 @@
     </form>
     </div>
     <script>
-      //Gets the user from the url, then displays it on the page
+      // Gets the user from the url, then displays it on the page
       // Reasonable assumption about email, since only @virginia.edu is the only one allowed, and computing id is defaulted
+      // Kinda ad hoc-ish, and if you can make a better solution, go for it
       var full = window.location.href;
       var split = full.indexOf('/', 7)+1;
       var account = full.substr(split, full.length).replace('/', '');
