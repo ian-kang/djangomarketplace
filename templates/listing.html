@@ -31,6 +31,7 @@
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
+            <h1 onclick="location.href='/{{listing.acct}}/'">{{listing.acct}}</h1>
 			{% if listing %}
                 <h1>{{listing.title}}</h1>
                 <img class = "listImage" style="width: 500px; height: 500px;" src="{{listing.images.url}}"/>
