@@ -32,6 +32,11 @@ def itemlist(request):
 def listingview(request):
     return render(request, "listing.html")
 
+def profileview(request, user):
+    data = {}
+    data['listing'] = Listing.objects.get(acct=user)
+    context_object_name = 'listings'
+    return render(request, "profile.html", data)
 
 def save_listing(request):
     form = CreateListingForm(request.POST)
@@ -72,11 +77,22 @@ class LoginView(generic.TemplateView):
 class LogoutView(generic.TemplateView):
     template_name = "base.html"
 
-class ProfileView(generic.TemplateView):
+class ProfileView(generic.ListView):
     template_name = "profile.html"
+    context_object_name = "listings"
 
-class ForeignProfileView(generic.TemplateView): # For viewing other users' profile pages
+    def get_queryset(self):
+        user = self.request.path.replace('/', '').replace('p', '')
+        print(user)
+        return Listing.objects.filter(acct=user)
+
+class ForeignProfileView(generic.ListView): # For viewing other users' profile pages
     template_name = "foreign_profile.html"
+    context_object_name = "listings"
+
+    def get_queryset(self):
+        user = self.request.path.replace('/', '')
+        return Listing.objects.filter(acct=user)
 
 def Logout(request):
     auth_logout(request)
