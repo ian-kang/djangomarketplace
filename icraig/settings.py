@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'social_django', #added for authentication
     'crispy_forms', #added to easily build, customize, and reuse forms
     'whitenoise.runserver_nostatic',
+    'storages'
 
 ]
 
@@ -99,14 +100,22 @@ WSGI_APPLICATION = 'icraig.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dddj58uavbkv69',
+        'USER': 'bkpfdxenqgaqph',
+        'PASSWORD': '3d58641687f1f6dec1284e7c69638a487b74c8d7ca6c7ce2b9b7c11c74c5dac2',
+        'HOST': 'ec2-107-21-120-104.compute-1.amazonaws.com',
+        'PORT': '5432',
+        #Previous
         #'ENGINE': 'django.db.backends.postgresql',
         #'NAME': 'listings',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        #'USER': 'postgres',
+        #'PASSWORD': 'password',
+        #'HOST': 'localhost',
+        #'PORT': '',
+
     }
 }
 
@@ -180,8 +189,13 @@ LOGIN_URL = '/auth/login/google-oauth2/'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+AWS_ACCESS_KEY_ID = 'AKIAXDVC2B5TQ5N5T53N'
+AWS_SECRET_ACCESS_KEY = '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'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'icraig'
+AWS_S3_REGION_NAME = 'us-east-1'
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
-MEDIA_URL = '/media/'
+#MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+#MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

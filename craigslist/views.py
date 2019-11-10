@@ -29,13 +29,6 @@ def create_listing(request):
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
 
-def itemlist(request):
-    return render(request, "itemlist.html")
-
-def listingview(request):
-    return render(request, "listing.html")
-
-
 def save_listing(request):
     form = CreateListingForm(request.POST)
     if form.is_valid():
@@ -75,14 +68,25 @@ class LoginView(generic.TemplateView):
 class LogoutView(generic.TemplateView):
     template_name = "base.html"
 
-class ProfileView(generic.TemplateView):
+class ProfileView(generic.ListView):
     template_name = "profile.html"
+    context_object_name = "listings"
+
+    def get_queryset(self):
+        user = self.request.path.replace('/', '').replace('p', '')
+        print(user)
+        return Listing.objects.filter(acct=user)
 
 class LocationView(generic.TemplateView):
     template_name = "locations.html"
 
-class ForeignProfileView(generic.TemplateView): # For viewing other users' profile pages
+class ForeignProfileView(generic.ListView): # For viewing other users' profile pages
     template_name = "foreign_profile.html"
+    context_object_name = "listings"
+
+    def get_queryset(self):
+        user = self.request.path.replace('/', '')
+        return Listing.objects.filter(acct=user)
 
 def Logout(request):
     auth_logout(request)

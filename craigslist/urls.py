@@ -11,12 +11,11 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('s/', views.ItemList.as_view(), name='itemlist'),
-    path('locations', views.LocationView.as_view(), name='locations'),
-    
-    path('<str:user>/<int:id>/', views.ListingView.as_view(), name='listing'), # Path for viewing other user listings. YYYYMMDDHH:MM:SS
-    path('profile/', views.ProfileView.as_view(), name='profile'), # Path for user login
-    path('profile/<str:user>/', views.ForeignProfileView.as_view(), name='profile'), # Path for viewing other user page
 
+    path('p/<str:usr>/', views.ProfileView.as_view(), name='profile'), # Path for viewing own profile
+    path('<str:user>/<int:id>/', views.ListingView.as_view(), name='listing'), # Path for viewing individual listings. YYYYMMDDHHMMSS
+    path('<str:usr>/', views.ForeignProfileView.as_view(), name='foreignprofile'), # Path for viewing other user page
+    path('locations/', views.LocationView.as_view(), name='locations'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

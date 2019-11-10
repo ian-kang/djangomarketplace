@@ -65,7 +65,7 @@ class ListingForm(forms.ModelForm):
         }
     ))
 
-    images = forms.ImageField(required=False)
+    images = forms.ImageField(required=True)
 
     class Meta:
 
