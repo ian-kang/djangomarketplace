@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 from django.conf.urls.static import static
@@ -14,5 +14,6 @@ urlpatterns = [
     path('p/<str:usr>/', views.ProfileView.as_view(), name='profile'), # Path for viewing own profile
     path('<str:user>/<int:id>/', views.ListingView.as_view(), name='listing'), # Path for viewing individual listings. YYYYMMDDHHMMSS
     path('<str:usr>/', views.ForeignProfileView.as_view(), name='foreignprofile'), # Path for viewing other user page
+    path('m/messages/', include('django_messages.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -90,3 +90,4 @@ class ProfleUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
+
