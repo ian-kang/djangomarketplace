@@ -49,7 +49,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length = 300, blank=True)
     location = models.CharField(max_length=50, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    #image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
         return self.user.username
@@ -57,12 +57,12 @@ class Profile(models.Model):
     def save(self):
         super().save()
 
-        img = Image.open(self.image.path)
+#        img = Image.open(self.image.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+#        if img.height > 300 or img.width > 300:
+#            output_size = (300, 300)
+#            img.thumbnail(output_size)
+#            img.save(self.image.path)
 
 @receiver(post_save, sender=User)
 def create_user_profle(sender, instance, created, **kwargs):
