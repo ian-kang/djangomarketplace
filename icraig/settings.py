@@ -108,6 +108,14 @@ DATABASES = {
         'PASSWORD': '3d58641687f1f6dec1284e7c69638a487b74c8d7ca6c7ce2b9b7c11c74c5dac2',
         'HOST': 'ec2-107-21-120-104.compute-1.amazonaws.com',
         'PORT': '5432',
+        #Previous
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': 'listings',
+        #'USER': 'postgres',
+        #'PASSWORD': 'password',
+        #'HOST': 'localhost',
+        #'PORT': '',
+
     }
 }
 

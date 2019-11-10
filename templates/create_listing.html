@@ -22,10 +22,12 @@
             
                 {{ form|crispy }}
 
-                
 			    <br>
 
                 <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Submit</button>
+                <script type="text/javascript">
+                    document.getElementById('id_acct').value = '{{user.username}}'; //Ties Listing to account that posted it
+                </script>
             </form>
             {% else %}
             <h2 style="text-align: center; margin-top: 10px"> You must be logged in to create a listing </h2>

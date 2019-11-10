@@ -24,6 +24,7 @@ CATEGORIES = (
 
 class ListingForm(forms.ModelForm):
 
+    acct = forms.CharField(required=True, initial="default", widget=forms.HiddenInput())
     title = forms.CharField(required=True, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
@@ -66,7 +67,7 @@ class ListingForm(forms.ModelForm):
 
         model = Listing
 
-        fields = ['title', 'price', 'description', 'images', 'category', 'condition',]
+        fields = ['title', 'price', 'description', 'images', 'category', 'condition', 'acct']
 
 
 class UserRegisterForm(UserCreationForm):

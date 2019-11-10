@@ -63,22 +63,20 @@
                         <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
                         <label class="custom-control-label" for="defaultUnchecked">Condensed view</label>
                 </div>
-                
-            
             </div>
 			
 			{% if itemlist %}
 			<table class="table table-hover">
-				<tr><td>Image</td><td>Item</td><td>Price</td><td>Description</td></tr>
+				<tr><td>Image</td><td>Item</td><td>Price</td><td>Posted By</td></tr>
 				{% for item in itemlist %}
-				<tr>
-					<td >
+				<tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
+					<td>
 						<img class = "listImage"
 						style="width: 200px; height: 200px;"
  						src="{{item.images.url}}"/></td>
 					<td>{{item.title}}</td>
                     <td>{{item.price}}</td>
-					<td>{{item.description}}</td>
+                    <td>{{item.acct}}</td>
 				</tr>
 				{% endfor %}
 			</table>

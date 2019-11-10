@@ -1,0 +1,58 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Listing Page</title>
+    {% block staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+    <script src="{% static 'js/itemlist.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/itemlist.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.css' %}" type="text/css" />
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    {% endblock %}
+</head>
+
+<body>
+    {% block wrapper %}
+    <div class="wrapper">
+        {% endblock %}
+        {% block pagecontent %}
+        <!-- Page Content  -->
+        <div id="content">
+            <h1 onclick="location.href='/{{listing.acct}}/'">{{listing.acct}}</h1>
+			{% if listing %}
+                <h1>{{listing.title}}</h1>
+                <img class = "listImage" style="width: 500px; height: 500px;" src="{{listing.images.url}}"/>
+                <h2>{{listing.description}}</h2>
+
+			{% else %}
+				<p>Something strange happened to this listing</p>
+			{% endif %}
+        </div>
+        
+  
+    </div>
+    {% endblock %}
+    <script type="text/javascript">
+      $("#datepicker").datetimepicker({
+        format: "dd MM yyyy",
+        autoclose: true,
+        todayBtn: true,
+        minuteStep: 10
+      });
+  </script>      
+</body>
+
+</html>
