@@ -36,8 +36,7 @@ class Listing(models.Model):
     condition = models.CharField(max_length=25, choices=CONDITIONS)
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
-    posted = models.
-    TimeField(auto_now_add=True)
+    posted = models.TimeField(auto_now_add=True)
     images = models.FileField()
     sold = models.BooleanField(default=False)
 
