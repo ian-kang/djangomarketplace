@@ -51,12 +51,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'social_django', #added for authentication
     'crispy_forms', #added to easily build, customize, and reuse forms
     'whitenoise.runserver_nostatic',
     'django_messages',
     'storages'
 ]
+SITE_ID = 1
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
