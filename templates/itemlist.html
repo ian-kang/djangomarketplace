@@ -135,8 +135,12 @@
 					<td>
 						<img class = "listImage"
 						style="width: 200px; height: 200px;"
- 						src="{{item.images.url}}"/></td>
-					<td>{{item.title}}</td>
+                         src="{{item.images.url}}"/></td>
+                    {% if item.sold == True %}
+                    <td>{{item.title}} (SOLD)</td>
+                    {% else %}
+                    <td>{{item.title}}</td>
+                    {% endif %}
                     <td>{{item.price}}</td>
                     <td>{{item.acct}}</td>
 				</tr>

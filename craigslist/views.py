@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
-
+from django.db.models import F
 # Create your views here.
 def index(request):
     return render(request,"welcome.html")
@@ -23,12 +23,11 @@ def create_listing(request):
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            form.save_m2m()
+            #form.save_m2m() commented because it kept crashing and idk what it does
             return redirect('/s/')
     else:
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
-
 def save_listing(request):
     form = CreateListingForm(request.POST)
     if form.is_valid():
@@ -45,6 +44,12 @@ def save_listing(request):
     args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
+def mark_sold(request, user, id):
+    if request.method == 'POST':
+        pro = Listing.objects.get(listing_id= id)
+        pro.sold = True
+        pro.save()
+        return redirect('/s/')
 
 class ItemList(generic.ListView):
     template_name = "itemlist.html"
@@ -130,5 +135,8 @@ def update_profile(request):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
 
-        args = {'user_form': user_form,'profile_form': profile_form}
-        return render(request, 'craigslist/profile.html', args)
+#    return render(request, 'profile.html', context)
+    args = {'user_form': user_form,'profile_form': profile_form}
+    return render(request, 'craigslist/profile.html', args)
+
+

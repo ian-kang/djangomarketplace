@@ -51,12 +51,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'social_django', #added for authentication
     'crispy_forms', #added to easily build, customize, and reuse forms
     'whitenoise.runserver_nostatic',
+    'django_messages',
     'storages'
-
 ]
+SITE_ID = 1
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -194,7 +196,8 @@ AWS_SECRET_ACCESS_KEY = 'ZcokREEpLUtMXQaI5VSuoXimiulb4B0cvHbq5H9c'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'icraig'
 AWS_S3_REGION_NAME = 'us-east-1'
-
+AWS_S3_CUSTOM_DOMAIN = 'icraig.s3.amazonaws.com'
+DEFAULT_FILE_STORAGE = 'icraig.storage_backends.MediaStorage'
 #MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 #MEDIA_URL = '/media/'
 

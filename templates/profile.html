@@ -2,14 +2,18 @@
 {% load crispy_forms_tags %}
 {% block pagecontent %}
 {% block content %}
-    <div class="content-section">
+    <div class="content-section" style = "padding: 2rem">
       <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
+          <p class="text-secondary">{{ user.email }} </p>
+        
+	<!-- <button id="send_message" onclick="location.href='mailto:{{user.email}}';">Send Message</button> -->
+        
+	</div>
       </div>
+      <br>
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -41,5 +45,30 @@
         {% endif %}
     </form>
     </div>
+
+<style type="text/css">
+
+send_message {
+ background-color: #fff;
+ padding: .5em;
+ -moz-border-radius: 5px;
+ -webkit-border-radius: 5px;
+ border-radius: 6px;
+ color: #7bc;
+ font-family: 'Arial';
+ font-size: 16px;
+ text-decoration: none;
+ border: 1px solid #7bc;
+}
+
+send_message:hover {
+    border: 1px solid #7bc;
+    color: #fff;
+    background: #7bc;
+    box-shadow: 0px 0px 1px #777;
+}
+</style>
+
 {% endblock %}
 {% endblock %}
+

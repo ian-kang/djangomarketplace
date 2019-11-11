@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from PIL import Image
 from datetime import datetime
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 
 # Create your models here.
 
@@ -33,13 +35,14 @@ class Listing(models.Model):
             .replace("-", "")
             .replace(" ", "")
             .replace(":", "")
-            .replace(".", "")) # Unique id for each listing. Basically a big ass number. Formatting is shit, feel free to fix
+            .replace(".", "")) # Unique id for each listing. Basically a big number. Feel free to fix
     category = models.CharField(max_length=15, choices=CATEGORIES)
     condition = models.CharField(max_length=25, choices=CONDITIONS)
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
     posted = models.DateTimeField(auto_now_add=True)
     images = models.FileField()
+    sold = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -54,7 +57,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def save(self):
+    def save(self, *args, **kwargs):
         super().save()
 
 #        img = Image.open(self.image.path)
@@ -69,6 +72,13 @@ def create_user_profle(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
+# Likely not needed, but just being careful
+#        if img.height > 300 or img.width > 300:
+#            output_size = (300, 300)
+#            img.thumbnail(output_size)
+#            img.save(self.image.path)
+
+
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
@@ -79,3 +89,4 @@ class Post(models.Model):
     description = models.TextField(max_length=1000)
     def __str__(self):
         return self.title
+
