@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'social_django', #added for authentication
     'crispy_forms', #added to easily build, customize, and reuse forms
     'whitenoise.runserver_nostatic',
+    'django_messages',
     'storages'
-
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

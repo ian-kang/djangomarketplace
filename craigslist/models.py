@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from PIL import Image
 from datetime import datetime
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 
 # Create your models here.
 
@@ -69,6 +71,13 @@ def create_user_profle(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
+# Likely not needed, but just being careful
+#        if img.height > 300 or img.width > 300:
+#            output_size = (300, 300)
+#            img.thumbnail(output_size)
+#            img.save(self.image.path)
+
+
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
@@ -79,3 +88,4 @@ class Post(models.Model):
     description = models.TextField(max_length=1000)
     def __str__(self):
         return self.title
+
