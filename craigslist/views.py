@@ -51,8 +51,25 @@ class ItemList(generic.ListView):
     context_object_name = "itemlist"
 
     def get_queryset(self):
+        cleared = self.request.GET.get('clear','0')
+        if cleared == '1':
+            return Listing.objects.all()        
         contains = self.request.GET.get('contains','')
-        return Listing.objects.all().filter(title__icontains=contains)
+        output = Listing.objects.all().filter(title__icontains=contains)
+        minPrice = self.request.GET.get('min-price','0') or 0
+        print('asdfasdfas\nasdfasdfasd\n')
+        print(minPrice)
+        output = output.filter(price__gte=float(minPrice))
+        maxPrice = self.request.GET.get('max-price','-1') or '-1'
+        if maxPrice != '-1':
+            output = output.filter(price__lte=float(maxPrice))
+        category = self.request.GET.get('category','ANY')
+        if category != 'ANY':
+            output = output.filter(category=category)
+        condition = self.request.GET.get('condition','ANY')
+        if condition != 'ANY':
+            output = output.filter(condition=category)
+        return output
 
 class ListingView(generic.TemplateView):
     template_name = "listing.html"
