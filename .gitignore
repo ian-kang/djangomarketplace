@@ -9,3 +9,5 @@ Lib
 Scripts
 pyvenv.cfg
 Include
+staticfiles
+
