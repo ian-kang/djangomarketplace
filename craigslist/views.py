@@ -19,15 +19,21 @@ def index(request):
     return render(request,"welcome.html")
     
 def create_listing(request):
+    print('Should come')
     if request.method == 'POST':
+        print('Method is post')
         form = ListingForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
+            print('Cool')
             form.save()
             #form.save_m2m() commented because it kept crashing and idk what it does
             return redirect('/s/')
     else:
+        print('Form is not valid')
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
+
 def save_listing(request):
     form = CreateListingForm(request.POST)
     if form.is_valid():
@@ -38,10 +44,12 @@ def save_listing(request):
         description = request.POST['description']
         images = request.POST['images']
         acct = request.POST['acct']
+        listing_id = request.POST['listing_id']
+        print('JAJAJAJA', listing_id)
 
-        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images, acct=acct)
+        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images, acct=acct, listing_id=listing_id)
         new_listing.save()
-    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct}
+    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct, 'listing_id':listing_id}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
 def mark_sold(request, user, id):
