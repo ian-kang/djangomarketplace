@@ -1,75 +1,24 @@
-<h1>Locations for CraigsList</h1>
- <style>
- /* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
- #map {
- height: 70%;
- }
- /* Optional: Makes the sample page fill the window. */
- #description {
- font-family: Roboto;
- font-size: 15px;
- font-weight: 300;
- }
- #infowindow-content .title {
- font-weight: bold;
- }
- #infowindow-content {
- display: inline;
- }
- #map #infowindow-content {
- display: inline;
- }
- .pac-card {
- margin: 10px 10px 0 0;
- border-radius: 2px 0 0 2px;
- box-sizing: border-box;
- -moz-box-sizing: border-box;
- outline: none;
- box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
- background-color: #fff;
- font-family: Roboto;
- }
- #pac-container {
- padding-bottom: 12px;
- margin-right: 12px;
- }
- .pac-controls {
- display: inline-block;
- padding: 5px 11px;
- }
- .pac-controls label {
- font-family: Roboto;
- font-size: 13px;
- font-weight: 300;
- }
- #pac-input {
- background-color: #fff;
- font-family: Roboto;
- font-size: 15px;
- font-weight: 300;
- margin-left: 12px;
- padding: 0 11px 0 13px;
- text-overflow: ellipsis;
- width: 400px;
- }
- #pac-input:focus {
- border-color: #4d90fe;
- }
- #title {
- color: #fff;
- background-color: #4d90fe;
- font-size: 25px;
- font-weight: 500;
- padding: 6px 12px;
- }
- #target {
- width: 345px;
- }
- </style>
+{% extends 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% block staticfiles %}
+    <script src="{% static 'js/locations.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/locations.css' %}" type="text/css" />
+    {% endblock %}
+</head>
+<body>
+    
+{%block pagecontent%}
+ 
 
- <input id="pac-input" class="controls" type="text" placeholder="Search Box">
- <div id="map"></div>
+ <input id="pac-input"class="form-control" type="text" placeholder="Search">
+ <div id="map" style = "height: 500px"></div>
  <script>
  var map;
  // This example adds a search box to a map, using the Google Place Autocomplete
@@ -149,25 +98,6 @@
  async defer></script>
  <!-- </body> -->
 
- <script>
- $(document).ready(function () {
- $("#1").on('click', function () {
- newLocation(38.036588, -78.505368);
- });
- $("#2").on('click', function () {
- newLocation(38.036357, -78.506080);
- });
- $("#3").on('click', function () {
- newLocation(38.033303, -78.507703);
- });
- $("#4").on('click', function () {
- newLocation(38.034847, -78.5086006);
- });
- $("#5").on('click', function () {
- newLocation(38.0325896,-78.51063);
- });
- });
- </script>
 
  <!-- </head> -->
 
@@ -179,4 +109,6 @@
  <button id="5" style="padding:10px;cursor:pointer;">UVA School of Engineering</button>
  <br><br> 
 </div>
-
+{% endblock %}
+</body>
+</html>
