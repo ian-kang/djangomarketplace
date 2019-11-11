@@ -1,6 +1,8 @@
+
 from django.urls import resolve
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.utils import timezone
 from craigslist.forms import ListingForm
 from craigslist.models import Listing
 from craigslist.views import index, create_listing, LogoutView, ItemList, LocationView, ForeignProfileView
@@ -10,6 +12,9 @@ from craigslist.forms import CATEGORIES
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
+import pytz
+import datetime
+
 
 class ViewTests(TestCase):
     def test_root_url_resolves_to_home_page_view(self):
@@ -53,3 +58,17 @@ class ViewTests(TestCase):
         form = ListingForm(files = file_dict, data=form_data)
         self.assertTrue(form.is_valid())
         response = self.client.post('/create_listing/', form_data)
+
+class ListingModelTests(TestCase):
+    def test_listing_was_posted_recently_with_new_question(self):
+        l1 = Listing()
+        l1.save()
+        self.assertIs(l1.posted_recently(), True)
+
+    def test_listing_was_posted_recently_with_old_question(self):
+        time = timezone.now() + datetime.timedelta(days=10)
+        l1 = Listing()
+        l1.save()
+        l1.posted = time
+        self.assertIs(l1.posted_recently(), False)
+

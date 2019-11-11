@@ -56,6 +56,68 @@
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
+            <form method="get">
+                <div class="row" style="margin-bottom: 20px">
+                    <input name="contains" type="hidden" id="query" value="">
+                    <div class="col-md-2">
+                        Min Price: <input class="form-control" type="number" placeholder="0" name="min-price" id="minPrice">
+                    </div>
+                    <div class="col-md-2">
+                        Max Price: <input class="form-control" type="number" placeholder="99999" name="max-price" id="maxPrice">
+                    </div>
+                    <div class="col-md-2">
+                        Category: <select name="category" class="bootstrap-select form-control" id="id_category">
+                        <option value="ANY">Any</option>
+                        <option value="FURNITURE">Furniture</option>
+                        <option value="TEXTBOOKS">Textbooks</option>
+                        <option value="HOUSING">Housing</option>
+                        <option value="SERVICES">Services</option>
+                        <option value="GIGS">Gigs</option>
+                        <option value="LOST_AND_FOUND">Lost &amp; Found</option>
+                        <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        Condition: <select name="condition" class="bootstrap-select form-control" id="id_condition">
+                        <option value="ANY">Any</option>
+                        <option value="NEW">New</option>
+                        <option value="OPEN_BOX">Open Box</option>
+                        <option value="USED">Used</option>
+                        <option value="REFURBISHED">Refurbished</option>
+                        <option value="FOR_PARTS">For Parts or Not Working</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 25px">
+                        <button value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Apply Filters</button>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 25px">
+                        <button value="1" name="clear" type="submit" class=" btn btn-block mybtn btn-secondary tx-tfm">Clear Filters</button>
+                    </div>
+                </div>
+            </form>
+            <script>
+             // the following two lines of code were retrieved from https://stackoverflow.com/a/12049703
+             var $_GET=[];
+             window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+
+             console.log($_GET['min-price']);
+             
+             if ($_GET['contains'] !== undefined && $_GET['clear'] !== '1') {
+                 $("#query").val($_GET['contains']);
+             }
+             if ($_GET['min-price'] !== undefined && $_GET['clear'] !== '1') {
+                 $("#minPrice").val($_GET['min-price']);
+             }
+             if ($_GET['max-price'] !== undefined && $_GET['clear'] !== '1') {
+                 $("#maxPrice").val($_GET['max-price']);
+             }
+             if ($_GET['category'] !== undefined && $_GET['clear'] !== '1') {
+                 $("#id_category").val($_GET['category']);
+             }
+             if ($_GET['condition'] !== undefined && $_GET['clear'] !== '1') {
+                 $("#id_condition").val($_GET['condition']);
+             }
+            </script>
             <div id="modifier-wrapper"> <!-- Things that modify the listing should results go in here -->
 
                 <div class="custom-control custom-checkbox">
@@ -72,8 +134,12 @@
 					<td>
 						<img class = "listImage"
 						style="width: 200px; height: 200px;"
- 						src="{{item.images.url}}"/></td>
-					<td>{{item.title}}</td>
+                         src="{{item.images.url}}"/></td>
+                    {% if item.sold == True %}
+                    <td>{{item.title}} (SOLD)</td>
+                    {% else %}
+                    <td>{{item.title}}</td>
+                    {% endif %}
                     <td>{{item.price}}</td>
                     <td>{{item.acct}}</td>
 				</tr>

@@ -1,7 +1,8 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-from datetime import datetime
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
@@ -30,21 +31,24 @@ CATEGORIES = (
 class Listing(models.Model):
     title = models.CharField(max_length=200)
     acct = models.CharField(max_length=20) # Hidden field to keep track of who posted what
-    listing_id = models.CharField(max_length=50, 
-        default=str(datetime.now())
-            .replace("-", "")
-            .replace(" ", "")
-            .replace(":", "")
-            .replace(".", "")) # Unique id for each listing. Basically a big ass number. Formatting is shit, feel free to fix
+    listing_id = models.IntegerField(default='0000')
     category = models.CharField(max_length=15, choices=CATEGORIES)
     condition = models.CharField(max_length=25, choices=CONDITIONS)
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
-    posted = models.DateTimeField(auto_now_add=True)
+    posted = models.TimeField(auto_now_add=True)
     images = models.FileField()
+    sold = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+    
+    def isFree(self):
+        return self.price == 0
+
+    def posted_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.posted <= now
 
 class Profile(models.Model):
     user = models.OneToOneField(User, unique = True, null = False, db_index = True, on_delete=models.CASCADE)
