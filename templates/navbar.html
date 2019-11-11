@@ -27,7 +27,7 @@
                 {% endif %}
                 </a>
                 <div class="md-form mt-0" style = "width: 100%; margin-left: 20px">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchBar">
                 </div>
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
@@ -47,6 +47,14 @@
                 </div>
 
         </nav>
+        <script>
+         var bar = $("#searchBar");
+         bar.on('keyup', function (e) {
+             if (e.keyCode === 13) {
+                 window.location.href = window.location.origin + '/s/?contains=' + bar.val().trim();
+             }
+         });
+        </script>
 {% block wrapper %}
 {% endblock %}
 

@@ -51,7 +51,8 @@ class ItemList(generic.ListView):
     context_object_name = "itemlist"
 
     def get_queryset(self):
-        return Listing.objects.all()
+        contains = self.request.GET.get('contains','')
+        return Listing.objects.all().filter(title__icontains=contains)
 
 class ListingView(generic.TemplateView):
     template_name = "listing.html"
