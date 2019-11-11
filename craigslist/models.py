@@ -1,7 +1,8 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-from datetime import datetime
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
@@ -31,7 +32,7 @@ class Listing(models.Model):
     title = models.CharField(max_length=200)
     acct = models.CharField(max_length=20) # Hidden field to keep track of who posted what
     listing_id = models.CharField(max_length=50, 
-        default=str(datetime.now())
+        default=str(datetime.datetime.now())
             .replace("-", "")
             .replace(" ", "")
             .replace(":", "")
@@ -46,6 +47,13 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def isFree(self):
+        return self.price == 0
+
+    def posted_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.posted <= now
 
 class Profile(models.Model):
     user = models.OneToOneField(User, unique = True, null = False, db_index = True, on_delete=models.CASCADE)
