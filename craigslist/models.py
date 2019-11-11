@@ -1,7 +1,8 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-from datetime import datetime
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
@@ -35,12 +36,20 @@ class Listing(models.Model):
     condition = models.CharField(max_length=25, choices=CONDITIONS)
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
-    posted = models.DateTimeField(auto_now_add=True)
+    posted = models.
+    TimeField(auto_now_add=True)
     images = models.FileField()
     sold = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+    
+    def isFree(self):
+        return self.price == 0
+
+    def posted_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.posted <= now
 
 class Profile(models.Model):
     user = models.OneToOneField(User, unique = True, null = False, db_index = True, on_delete=models.CASCADE)
