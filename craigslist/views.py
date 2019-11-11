@@ -113,6 +113,6 @@ def update_profile(request):
         profile_form = ProfileForm(instance=request.user.profile)
 
 #    return render(request, 'profile.html', context)
-  args = {'user_form': user_form,'profile_form': profile_form}
-  return render(request, 'craigslist/profile.html', args)
+    args = {'user_form': user_form,'profile_form': profile_form}
+    return render(request, 'craigslist/profile.html', args)
 
