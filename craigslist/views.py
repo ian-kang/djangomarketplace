@@ -23,12 +23,11 @@ def create_listing(request):
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            form.save_m2m()
+            #form.save_m2m() commented because it kept crashing and idk what it does
             return redirect('/s/')
     else:
         form = ListingForm()
     return render(request, 'create_listing.html', {'form': form})
-
 def save_listing(request):
     form = CreateListingForm(request.POST)
     if form.is_valid():
@@ -45,6 +44,15 @@ def save_listing(request):
     args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
+def mark_sold(request, id):
+    if request.method == 'POST':
+        user = Listing.objects.get(pk = id)
+    #you can do this for as many fields as you like
+    #here I asume you had a form with input like <input type="text" name="name"/>
+    #so it's basically like that for all form fields
+        user.sold = True
+        user.save()
+        return redirect('/s/')
 
 class ItemList(generic.ListView):
     template_name = "itemlist.html"

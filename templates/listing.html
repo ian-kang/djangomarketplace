@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
-    <script src="{% static 'js/itemlist.js' %}"></script>
+    <script src="{% static 'js/listing.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/itemlist.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.css' %}" type="text/css" />
 
@@ -31,27 +31,50 @@
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
+            {% if listing.acct == user.username%}
+            <button type="button"  id = "showModal" style = "float: right; margin-right: 1rem" class="btn btn-danger"  data-toggle="modal" data-target="#markSold">Mark as Sold</button>
+            {% endif %}
             <h1 onclick="location.href='/{{listing.acct}}/'">{{listing.acct}}</h1>
-			{% if listing %}
-                <h1>{{listing.title}}</h1>
-                <img class = "listImage" style="width: 500px; height: 500px;" src="{{listing.images.url}}"/>
-                <h2>{{listing.description}}</h2>
-
+      {% if listing %}
+                {% if listing.sold == True %}
+                  <h1>{{listing.title}} (SOLD)</h1>
+                {% else %}
+                  <h1>{{listing.title}}</h1>
+                {% endif %}
+                <img class = "listImage" style="width: 500px; height: 500px; float: left" src="{{listing.images.url}}"/>
+                <h2 style = "padding: 1rem; float: left;">{{listing.description}}</h2>
 			{% else %}
 				<p>Something strange happened to this listing</p>
-			{% endif %}
+      {% endif %}
         </div>
-        
-  
+    </div>
+    <div class="modal fade" id="markSold" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mark as sold</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action= "/mark_sold/" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <div class="form-group">
+                <label>Who did you sell this to?</label>
+                <input type="text" class="form-control" id="nameInput" name = "nameInput"  placeholder="Enter username"> 
+                <input type="hidden" name="pk" value="{{listing.id}}" />        
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     {% endblock %}
+    
     <script type="text/javascript">
-      $("#datepicker").datetimepicker({
-        format: "dd MM yyyy",
-        autoclose: true,
-        todayBtn: true,
-        minuteStep: 10
-      });
   </script>      
 </body>
 
