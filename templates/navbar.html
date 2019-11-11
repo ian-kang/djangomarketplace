@@ -33,7 +33,15 @@
                 {% endif %}
                 </a>
                 <div class="md-form mt-0" style = "width: 100%; margin-left: 20px">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchBar">
+                    <script>
+                     // the following two lines of code were retrieved from https://stackoverflow.com/a/12049703
+                     var $_GET=[];
+                     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+                     if ($_GET['contains'] !== undefined) {
+                         $("#searchBar").val($_GET['contains']);
+                     }
+                    </script>
                 </div>
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
@@ -56,6 +64,14 @@
                 </div>
 
         </nav>
+        <script>
+         var bar = $("#searchBar");
+         bar.on('keyup', function (e) {
+             if (e.keyCode === 13) {
+                 window.location.href = window.location.origin + '/s/?contains=' + bar.val().trim();
+             }
+         });
+        </script>
 {% block wrapper %}
 {% endblock %}
 
