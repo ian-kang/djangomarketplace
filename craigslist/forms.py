@@ -87,9 +87,11 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = ('bio', 'location', 'birth_date')
 
+
 class PostForm(ModelForm):
     title = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
     class Meta:
         model = Post
         fields = ('title', 'description',)
+
