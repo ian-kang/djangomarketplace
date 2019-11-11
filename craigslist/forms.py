@@ -1,8 +1,12 @@
 from django import forms
 from .models import Listing
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.forms import ModelForm
+
 from .models import Profile
+from .models import Post
+
 
 CONDITIONS = (
     ('NEW', 'New'),
@@ -61,7 +65,7 @@ class ListingForm(forms.ModelForm):
         }
     ))
 
-    images = forms.ImageField(required=False)
+    images = forms.ImageField(required=True)
 
     class Meta:
 
@@ -69,25 +73,25 @@ class ListingForm(forms.ModelForm):
 
         fields = ['title', 'price', 'description', 'images', 'category', 'condition', 'acct']
 
-
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-
+class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = (
+            'first_name',
+            'last_name',
+            'email',
+        )
 
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
-    class Meta:
-        model = User
-        fields = ['username', 'email']
-
-class ProfleUpdateForm(forms.ModelForm):
-
+class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ('bio', 'location', 'birth_date')
 
+
+class PostForm(ModelForm):
+    title = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
+    class Meta:
+        model = Post
+        fields = ('title', 'description',)
 

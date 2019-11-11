@@ -20,7 +20,7 @@
             <a class="navbar-brand" href="#">
                 
                 {% if user.is_authenticated %}
-                <p>{{ user.username }}</p>
+                <a class="nav-link" style="color: white; margin-left: 10px;" >{{ user.username }}</a>
                 <a class="nav-link" style="color: white; margin-right: 10px; width: 30%" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                 <a class="nav-link" style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Login</a>
@@ -32,16 +32,19 @@
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/s/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../../p/{{user.username}}/"> Profile </a>
+                            <a class="nav-link" href="/p/{{user.username}}/"> Profile </a>
                         </li>
 			<li class="nav-item">
-			    <a class="nav-link" href="../../../../m/messages/"> Mail </a>
+			    <a class="nav-link" href="/m/messages/"> Mail </a>
 			</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../../create_listing"> Sell</a>
+                            <a class="nav-link" href="/create_listing"> Sell</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations"> Location</a>
                         </li>
                     </ul>
                 </div>

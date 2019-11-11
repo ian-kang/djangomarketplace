@@ -7,10 +7,12 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.views.generic import FormView, TemplateView
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect
-from .models import Listing
-from .forms import ListingForm, UserUpdateForm, ProfleUpdateForm, User, UserRegisterForm
+from .models import Listing, Post
+from .forms import ListingForm, User, UserForm, ProfileForm, PostForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.forms import ModelForm
 
 # Create your views here.
 def index(request):
@@ -21,6 +23,7 @@ def create_listing(request):
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            form.save_m2m()
             return redirect('/s/')
     else:
         form = ListingForm()
@@ -74,6 +77,9 @@ class ProfileView(generic.ListView):
         print(user)
         return Listing.objects.filter(acct=user)
 
+class LocationView(generic.TemplateView):
+    template_name = "locations.html"
+
 class ForeignProfileView(generic.ListView): # For viewing other users' profile pages
     template_name = "foreign_profile.html"
     context_object_name = "listings"
@@ -90,39 +96,23 @@ def redirect_view(request):
     response = redirect('/redirect-success/')
     return response
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created! You are now able to log in')
-            return redirect('login')
-    else:
-        form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
-
 
 @login_required
-def profile(request):
+def update_profile(request):
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfleUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('profile')
-
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return HttpResponseRedirect('profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
     else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfleUpdateForm(instance=request.user.profile)
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
 
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
-
-    return render(request, 'profile.html', context)
+#    return render(request, 'profile.html', context)
+  args = {'user_form': user_form,'profile_form': profile_form}
+  return render(request, 'craigslist/profile.html', args)
 
