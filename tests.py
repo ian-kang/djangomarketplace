@@ -19,17 +19,18 @@ class ViewTests(TestCase):
             'password'
         )
     def test_create_listing(self): 
-        self.client.login(username='foo', password='password')
+        self.client.login(username='admin', password='password')
         form_data = { 
             'title': 'car',
             'price': 42000,
+            'description': ('this is a car'),
+            'images': '',
             'category': ('FURNITURE', 'Furniture'),
             'condition': ('NEW', 'New'),
-            'description': ('this is a car')
+            'acct': 'admin'
         } 
         form = ListingForm(data=form_data)
         response = self.client.post('create_listing/', form_data)
-        print(response)
         num_of_listings = Listing.objects.all().count()
         temp = Listing.objects.get(title=form_data['title'])
         self.assertTrue(form.is_valid())
