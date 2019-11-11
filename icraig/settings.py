@@ -102,14 +102,14 @@ WSGI_APPLICATION = 'icraig.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dddj58uavbkv69',
-        'USER': 'bkpfdxenqgaqph',
-        'PASSWORD': '3d58641687f1f6dec1284e7c69638a487b74c8d7ca6c7ce2b9b7c11c74c5dac2',
-        'HOST': 'ec2-107-21-120-104.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'dddj58uavbkv69',
+        # 'USER': 'bkpfdxenqgaqph',
+        # 'PASSWORD': '3d58641687f1f6dec1284e7c69638a487b74c8d7ca6c7ce2b9b7c11c74c5dac2',
+        # 'HOST': 'ec2-107-21-120-104.compute-1.amazonaws.com',
+        # 'PORT': '5432',
         #Previous
         #'ENGINE': 'django.db.backends.postgresql',
         #'NAME': 'listings',
@@ -117,8 +117,11 @@ DATABASES = {
         #'PASSWORD': 'password',
         #'HOST': 'localhost',
         #'PORT': '',
-
-    }
+        'TEST': {
+            'NAME': 'test_database',
+        },
+    },
+    
 }
 
 db_from_env = dj_database_url.config(conn_max_age=600)

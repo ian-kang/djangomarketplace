@@ -5,3 +5,8 @@ db.sqlite3
 .DS_Store
 media
 settings.py
+Lib
+Scripts
+pyvenv.cfg
+Include
+staticfiles
