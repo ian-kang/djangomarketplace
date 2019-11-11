@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
-
+from django.db.models import F
 # Create your views here.
 def index(request):
     return render(request,"welcome.html")
@@ -44,14 +44,11 @@ def save_listing(request):
     args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
-def mark_sold(request, id):
+def mark_sold(request, user, id):
     if request.method == 'POST':
-        user = Listing.objects.get(pk = id)
-    #you can do this for as many fields as you like
-    #here I asume you had a form with input like <input type="text" name="name"/>
-    #so it's basically like that for all form fields
-        user.sold = True
-        user.save()
+        pro = Listing.objects.get(listing_id= id)
+        pro.sold = True
+        pro.save()
         return redirect('/s/')
 
 class ItemList(generic.ListView):
