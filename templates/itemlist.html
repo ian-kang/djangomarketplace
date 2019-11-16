@@ -28,44 +28,22 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-
             <ul class="list-unstyled components">
-                <li>
-                    <a href="#itemMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Item type</a>
-                    <ul class="collapse list-unstyled" id="itemMenu">
-                        <li>
-                            <a href="#">Electronics</a>
-                        </li>
-                        <li>
-                            <a href="#">Textbooks</a>
-                        </li>
-                        <li>
-                            <a href="#">Accessories</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#locationMenu">Include Services</a>
-                <li>
-                  <a href="#" id = "datepicker">Date listed</a>
-                </li>
-                    
-            </ul>
-        </nav>
-        {% endblock %}
-        {% block pagecontent %}
-        <!-- Page Content  -->
-        <div id="content">
-            <form method="get">
+                <form method="get">
                 <div class="row" style="margin-bottom: 20px">
                     <input name="contains" type="hidden" id="query" value="">
-                    <div class="col-md-2">
+                    <li>
+                    <div class = "sidebaritem">
                         Min Price: <input class="form-control" type="number" placeholder="0" name="min-price" id="minPrice">
                     </div>
-                    <div class="col-md-2">
+                    </li>
+                    <li>
+                    <div class = "sidebaritem">
                         Max Price: <input class="form-control" type="number" placeholder="99999" name="max-price" id="maxPrice">
                     </div>
-                    <div class="col-md-2">
+                    </li>
+                    <li>
+                    <div class = "sidebaritem">
                         Category: <select name="category" class="bootstrap-select form-control" id="id_category">
                         <option value="ANY">Any</option>
                         <option value="FURNITURE">Furniture</option>
@@ -77,7 +55,9 @@
                         <option value="OTHER">Other</option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                     </li>
+                     <li>
+                    <div class = "sidebaritem">
                         Condition: <select name="condition" class="bootstrap-select form-control" id="id_condition">
                         <option value="ANY">Any</option>
                         <option value="NEW">New</option>
@@ -87,14 +67,23 @@
                         <option value="FOR_PARTS">For Parts or Not Working</option>
                         </select>
                     </div>
-                    <div class="col-md-2" style="margin-top: 25px">
-                        <button value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Apply Filters</button>
+                    </li>
+                    <li class = "sidebaritem">
+                    <div style="margin-top: 25px">
+                        <button value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-dark tx-tfm">Apply Filters</button>
                     </div>
-                    <div class="col-md-2" style="margin-top: 25px">
-                        <button value="1" name="clear" type="submit" class=" btn btn-block mybtn btn-secondary tx-tfm">Clear Filters</button>
+                    <div style="margin-top: 25px">
+                        <button value="1" name="clear" type="submit" class=" btn btn-block mybtn btn-danger tx-tfm">Clear Filters</button>
                     </div>
+                    </li>
                 </div>
             </form>
+        </nav>
+        {% endblock %}
+        {% block pagecontent %}
+        <!-- Page Content  -->
+        <div id="content">
+            
             <script>
              // the following two lines of code were retrieved from https://stackoverflow.com/a/12049703
              var $_GET=[];
