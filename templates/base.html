@@ -13,44 +13,104 @@
         <link rel="stylesheet" href="{% static 'css/itemlist.css' %}" type="text/css" />
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-        <title>Base</title>	
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+        {% block staticfiles %}
+        {% endblock %}
+        <title>iCraig</title>	
 
     <title></title>
 </head>
 <body>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav id="main_navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 
                 {% if user.is_authenticated %}
-                <p>{{ user.username }}</p>
+                <a class="nav-link" style="color: white; margin-left: 10px;" >{{ user.username }}</a>
                 <a class="nav-link" style="color: white; margin-right: 10px; width: 30%" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                 <a class="nav-link" style="color: white; margin-right: 10px" class="lead" href="{% url 'login' %}">Login</a>
                 {% endif %}
                 </a>
                 <div class="md-form mt-0" style = "width: 100%; margin-left: 20px">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchBar">
+                    <script>
+                     // the following two lines of code were retrieved from https://stackoverflow.com/a/12049703
+                     var $_GET=[];
+                     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+                     if ($_GET['contains'] !== undefined) {
+                         $("#searchBar").val($_GET['contains']);
+                     }
+                    </script>
                 </div>
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            <a id="home" class="nav-link" href="/s/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../../p/{{user.username}}/"> Profile </a>
+                            <a class="nav-link" href="/p/{{user.username}}/"> Profile </a>
                         </li>
 			<li class="nav-item">
-			    <a class="nav-link" href="../../../../m/messages/"> Mail </a>
+			    <a id="messages" class="nav-link" href="/m/messages/"> Mail </a>
 			</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../../../create_listing"> Sell</a>
+                            <a class="nav-link" href="/create_listing"> Sell</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations"> Location</a>
+                        </li>
+                    </ul>
+                </div>
+
+        </nav>
+        <script>
+         var bar = $("#searchBar");
+         bar.on('keyup', function (e) {
+             if (e.keyCode === 13) {
+                 window.location.href = window.location.origin + '/s/?contains=' + bar.val().trim();
+             }
+         });
+        </script>
+
+	<nav id="mail_navbar" class="navbar navbar-expand-lg navbar-dark ">
+            <a class="navbar-brand" href="#"> </a>
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li style="margin-left: 16px;" class="nav-item">
+                            <a id="inbox" class="nav-link" href="../../../../m/messages/inbox"> Inbox </a>
+                        </li>
+			<li style="margin-left: 16px;" class="nav-item">
+			    <a id="outbox" class="nav-link" href="../../../../m/messages/outbox"> Outbox </a>
+			</li>
+                        <li style="margin-left: 16px;" class="nav-item">
+                            <a id="trash" class="nav-link" href="../../../../m/messages/trash"> Trash </a>
                         </li>
                     </ul>
                 </div>
   	 </nav>
 
 <style type="text/css">
+
+#main_navbar{
+   margin-bottom:0;
+}
+
+#mail_navbar{
+   padding-top: 7px;
+   padding-bottom: 7px;
+   background: #1888ff;
+}
+
+a#home {
+   color:#73b0ff;
+}
+
+a#messages {
+    color:#fff;
+}
 
 </style>
 
