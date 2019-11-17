@@ -143,6 +143,11 @@ a.article:hover {
     background: #00438b !important;
     color: #fff !important;
 }
+.sidebaritem{
+    margin-bottom: 15px;
+    margin-left: 30px;
+    width: 220px;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
