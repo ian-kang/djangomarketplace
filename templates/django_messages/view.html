@@ -2,22 +2,24 @@
 {% load i18n %}
 
 {% block content %}
-<h1>{% trans "View Message" %}</h1>
+<!-- <h1>{% trans "View Message" %}</h1> -->
 <dl class="message-headers">
-    <dt>{% trans "Subject" %}</dt>
-    <dd><strong>{{ message.subject }}</strong></dd>
-    <dt>{% trans "Sender" %}</dt>
-    <dd>{{ message.sender }}</dd>
-    <dt>{% trans "Date" %} </dt>
-    <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
-    <dt>{% trans "Recipient" %}</dt>
-    <dd>{{ message.recipient }}</dd>
-    <dt>{% trans "Message" %}</dt>
-    {{ message.body|linebreaksbr }}<br /><br />
+    <dt style="padding:0 15px 0 50px;">{% trans "Subject" %}</dt>
+    <dd style="padding:0 15px 0 50px;">{{ message.subject }}</dd>
+    <dt style="padding:0 15px 0 50px;">{% trans "Sender" %}</dt>
+    <dd style="padding:0 15px 0 50px;">{{ message.sender }}</dd>
+    <dt style="padding:0 15px 0 50px;">{% trans "Date" %} </dt>
+    <dd style="padding:0 15px 0 50px;">{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
+    <dt style="padding:0 15px 0 50px;">{% trans "Recipient" %}</dt>
+    <dd style="padding:0 15px 0 50px;">{{ message.recipient }}</dd>
+    <dt style="padding:0 15px 0 50px;">{% trans "Message" %}</dt>
+    <dd style="padding:0 15px 0 50px;">{{ message.body|linebreaksbr }}</dd>   
+    <br /><br />
 </dl>
 
 {% ifequal message.recipient.pk user.pk %}
-<a href="{% url 'messages_reply' message.id %}" class="button">{% trans "Reply" %}</a>
+<a id="go_back" href="../../../../m/messages/inbox" class="button">{% trans "Go Back" %}</a>
+<a id="reply" href="{% url 'messages_reply' message.id %}" class="button">{% trans "Reply" %}</a>
 {% endifequal %}
 <a href="{% url 'messages_delete' message.id %}" class="button">{% trans "Delete" %}</a>
 
@@ -37,7 +39,7 @@
 <style type="text/css">
 
 .button {
- background-color: #007bff;
+ background-color: #1888ff;
  padding: .5em;
  -moz-border-radius: 5px;
  -webkit-border-radius: 5px;
@@ -46,15 +48,25 @@
  font-family: 'Arial';
  font-size: 16px;
  text-decoration: none;
- border: 1px solid #007bff;
+ border: 1px solid #1888ff;
 }
 
 .button:hover {
-    border: 1px solid #007bff;
-    color: #007bff;
+    border: 1px solid #1888ff;
+    color: #1888ff;
     background: #fff;
     box-shadow: 0px 0px 1px #777;
 }
+
+#go_back {
+ margin-left: 50px;
+ margin-right: 5px;
+}
+
+#reply {
+ margin-right: 5px;
+}
+
 </style>
 
 {% endblock %}
