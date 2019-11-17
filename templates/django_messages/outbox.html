@@ -7,10 +7,10 @@
 <table class="messages">
     <thead>
         <tr>
-	<th style="padding:0 15px 0 50px;">{% trans "Recipient" %}</th>
-	<th style="padding:0 15px 0 0px;">{% trans "Subject" %}</th>
-	<th style="padding:0 110px 0 0px;">{% trans "Sent" %}</th>
-	<th style="padding:0 0px 0 15px;">{% trans "Action" %}</th>
+	<th style="padding:0 15px 15px 50px;">{% trans "Recipient" %}</th>
+	<th style="padding:0 15px 15px 0px;">{% trans "Subject" %}</th>
+	<th style="padding:0 110px 15px 0px;">{% trans "Sent" %}</th>
+	<th style="padding:0 0px 15px 15px;">{% trans "Action" %}</th>
 	</tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
     </tbody>
 </table>
 {% else %}
-<p>{% trans "No messages." %}</p>
+<p style="padding:0 15px 0 50px;">{% trans "No messages." %}</p>
 {% endif %}
 
 <style type="text/css">
