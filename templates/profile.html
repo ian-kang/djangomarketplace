@@ -1,56 +1,35 @@
 {% extends 'navbar.html' %}
-{% load crispy_forms_tags %}
 {% block pagecontent %}
 {% block content %}
-    <div class="content-section" style = "padding: 2rem">
-      <div class="media">
+<div class="content-section" style = "padding: 2rem">
+    <div class="media">
         <div class="media-body">
-          <legend class="border-bottom mb-4">Profile Info</legend>
-          <h2 class="account-heading">Your Username: {{ user.username }}</h2>
-          <p class="text-secondary">Your Email: {{ user.email }} </p>
+            <legend class="border-bottom mb-4">Profile Info</legend>
+            <h2 class="account-heading">Your Username: {{ user.username }}</h2>
+            <p class="text-secondary">Your Email: {{ user.email }} </p>
 	</div>
-      </div>
-      {% if listings %}
-      <table class="table table-hover">
-          <tr><td>Image</td><td>Item</td><td>Price</td></tr>
-          {% for item in listings %}
-          <tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
-              <td>
-                  <img class = "listImage"
-                       style="width: 200px; height: 200px;"
-                       src="{{item.images.url}}"/></td>
-                  <td>{{item.title}}</td>
-                  <td>{{item.price}}</td>
-                  
-          </tr>
-          {% endfor %}
-      </table>
-
-      {% else %}
-      <p>LISTINGS ARE NOT HERE</p>
-      {% endif %}
     </div>
+    {% if listings %}
+    <table class="table table-hover">
+        <tr><td>Image</td><td>Item</td><td>Price</td></tr>
+        {% for item in listings %}
+        <tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
+            <td>
+                <img class = "listImage"
+                     style="width: 200px; height: 200px;"
+                     src="{{item.images.url}}"/></td>
+                <td>{{item.title}}</td>
+                <td>{{item.price}}</td>                
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+    <p>LISTINGS ARE NOT HERE</p>
+    {% endif %}
+</div>
+    
 <style type="text/css">
-
-input{
- background-color: #fff;
- padding: .5em;
- -moz-border-radius: 5px;
- -webkit-border-radius: 5px;
- border-radius: 6px;
- color: #7bc;
- font-family: 'Arial';
- font-size: 16px;
- text-decoration: none;
- border: 1px solid #7bc;
-}
-
-input:hover{
-    border: 1px solid #7bc;
-    color: #fff;
-    background: #7bc;
-    box-shadow: 0px 0px 1px #777;
-}
 
 a#profile {
     color: #fff;
