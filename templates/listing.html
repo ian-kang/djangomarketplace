@@ -42,12 +42,12 @@
         <button style="display:inline; margin-left: 50px; margin-bottom: 15px;" class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
         {% if listing %}
             {% if listing.sold == True %}
-              <h1>{{listing.title}} (SOLD)</h1>
+              <h2>{{listing.title}} (SOLD)</h2>
             {% else %}
-              <h1>{{listing.title}}</h1>
+              <h2>Item: {{listing.title}}</h2>
             {% endif %}
             <img class = "listImage" style="width: 500px; height: 500px; float: left" src="{{listing.images.url}}"/>
-            <h2 style = "padding: 1rem; float: left;">{{listing.description}}</h2>
+            <h3 style = "padding: 1rem; float: left;">Description: {{listing.description}}</h3>
   			{% else %}
   				<p>Something strange happened to this listing</p>
         {% endif %}
