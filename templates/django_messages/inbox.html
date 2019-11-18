@@ -7,10 +7,10 @@
 <table class="messages">
     <thead>
         <tr>
-	<th style="padding:0 15px 0 50px;">{% trans "Sender" %}</th>
-	<th style="padding:0 15px 0 0px;">{% trans "Subject" %}</th>
-	<th style="padding:0 110px 0 0px;">{% trans "Received" %}</th>
-	<th style="padding:0 15px 0 0px;">{% trans "Action" %}</th>
+	<th style="padding:0 15px 15px 50px;">{% trans "Sender" %}</th>
+	<th style="padding:0 15px 15px 0px;">{% trans "Subject" %}</th>
+	<th style="padding:0 110px 15px 15px;">{% trans "Received" %}</th>
+	<th style="padding:0 15px 15px 0px;">{% trans "Action" %}</th>
 	</tr>
     </thead>
     <tbody>
@@ -23,14 +23,14 @@
             <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
             {% if message.replied %}</em>{% endif %}
             {% if message.new %}</strong>{% endif %}</td>
-        <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+        <td style="padding:0 0px 0 15px;">{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
         <td><a href="{% url 'messages_delete' message.id %}">{% trans "delete" %}</a></td>
     </tr>
 {% endfor %}
     </tbody>
 </table>
 {% else %}
-<p>{% trans "No messages." %}</p>
+<p style="padding:0 15px 0 50px;">{% trans "No messages." %}</p>
 {% endif %}
 
 <br></br>
