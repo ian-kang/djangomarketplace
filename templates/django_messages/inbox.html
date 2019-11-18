@@ -7,7 +7,7 @@
 <table class="messages">
     <thead>
         <tr>
-	<th style="padding:0 15px 15px 50px;">{% trans "Sender" %}</th>
+	<th style="padding:0 15px 15px 50px;"> {% trans "Sender" %} </th>
 	<th style="padding:0 15px 15px 0px;">{% trans "Subject" %}</th>
 	<th style="padding:0 110px 15px 15px;">{% trans "Received" %}</th>
 	<th style="padding:0 15px 15px 0px;">{% trans "Action" %}</th>
@@ -16,15 +16,15 @@
     <tbody>
 {% for message in message_list %}
     <tr>
-        <td style="padding:0 15px 0 50px;">{{ message.sender }}</td>
+        <td style="padding:0 15px 0 50px;"> <i> {{ message.sender }} </i> </td>
         <td>
             {% if message.new %}<strong>{% endif %}
             {% if message.replied %}<em>{% endif %}
-            <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
+            <a id="subject" href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
             {% if message.replied %}</em>{% endif %}
             {% if message.new %}</strong>{% endif %}</td>
         <td style="padding:0 0px 0 15px;">{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-        <td><a href="{% url 'messages_delete' message.id %}">{% trans "delete" %}</a></td>
+        <td><a id="delete" href="{% url 'messages_delete' message.id %}"> {% trans "delete" %}</a></td>
     </tr>
 {% endfor %}
     </tbody>
@@ -61,6 +61,17 @@ button:hover {
 
 a#inbox{
    color: #fff;
+}
+
+#subject{
+   cursor:pointer;
+   color:blue;
+   text-decoration:underline;
+}
+
+#delete{
+   cursor:pointer;
+   color:blue;
 }
 
 </style>
