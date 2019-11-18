@@ -1,33 +1,5 @@
 {% extends 'navbar.html' %}
 {% load crispy_forms_tags %}
-{% block pagecontent %}
-{% block content %}
-    
-    <div class="content-section" style = "padding: 2rem">
-      <div class="media">
-        <div class="media-body">
-          <legend class="border-bottom mb-4">Profile Info</legend>
-          <h2 class="account-heading" id="user"></h2>
-          <p class="text-secondary" id="email"></p>
-        </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% if listings %}
-        <table class="table table-hover">
-          <tr><td>Image</td><td>Item</td><td>Price</td></tr>
-          {% for item in listings %}
-          <tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
-            <td>
-              <img class = "listImage"
-              style="width: 200px; height: 200px;"
-              src="{{item.images.url}}"/></td>
-            <td>{{item.title}}</td>
-            <td>{{item.price}}</td>
-                    
-          </tr>
-          {% endfor %}
-        </table>
 {% load static %}
 
 
