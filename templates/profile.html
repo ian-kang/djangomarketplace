@@ -4,26 +4,12 @@
 {% block content %}
     <div class="content-section" style = "padding: 2rem">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }} </p>
-        
-	<!-- <button id="send_message" onclick="location.href='mailto:{{user.email}}';">Send Message</button> -->
+          <legend class="border-bottom mb-4">Profile Info</legend>
+          <h2 class="account-heading">Your Username: {{ user.username }}</h2>
+          <p class="text-secondary">Your Email: {{ user.email }} </p>
 	</div>
       </div>
-      <br>
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ u_form|crispy }}
-            {{ p_form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <form>
-		<input type="button" onclick="history.go(0)" value="Update">
-	    </form>
         </div>
         {% if listings %}
         <table class="table table-hover">
