@@ -11,6 +11,7 @@
           <p class="text-secondary" id="email"></p>
         </div>
       </div>
+      <button class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -50,8 +51,7 @@
       var split = full.indexOf('/', 9)+1;
       var account = full.substr(split, full.length).replace('/', '');
       document.getElementById('user').innerHTML = account;
-      document.getElementById('email').innerHTML = account+"@virginia.edu";
-      
+      document.getElementById('email').innerHTML = account+"@virginia.edu";      
     </script>
 {% endblock %}
 {% endblock %}
