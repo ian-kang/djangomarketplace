@@ -67,10 +67,9 @@
           <form action = "mark_sold/" method="POST">
             {% csrf_token %}
             <div class="form-group">
-              <label>Who did you sell this to?</label>
-              <input type="text" class="form-control" id="nameInput" name="updateSold"  placeholder="Enter username">     
+              <label>By marking this item as sold, it will no longer be displayed in the listing section. This CANNOT be reversed. Are you sure?</label>   
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Yes</button>
           </form>
         </div>
       </div>
