@@ -16,12 +16,12 @@
     <tbody>
 {% for message in message_list %}
     <tr>
-        <td style="padding:0 15px 0 50px;">{{ message.recipient }}</td>
+        <td style="padding:0 15px 0 50px;"> <i> {{ message.recipient }} </i> </td>
         <td>
-        <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
+        <a id="subject" href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
         </td>
         <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-        <td style="padding:0 0px 0 15px;"><a href="{% url 'messages_delete' message.id %}?next={% url 'messages_outbox' %}">{% trans "delete" %}</a></td>
+        <td id="delete" style="padding:0 0px 0 15px;"><a href="{% url 'messages_delete' message.id %}?next={% url 'messages_outbox' %}">{% trans "delete" %}</a></td>
     </tr>
 {% endfor %}
     </tbody>
@@ -35,6 +35,17 @@
 a#outbox{
    color: #fff;
 
+}
+
+#subject{
+   cursor:pointer;
+   color:blue;
+   text-decoration:underline;
+}
+
+#delete{
+   cursor:pointer;
+   color:blue;
 }
 
 </style>
