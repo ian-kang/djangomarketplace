@@ -22,7 +22,7 @@
 		          <p class="text-secondary" id="email"></p>
 		        </div>
 		      </div>
-		      <button class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
+		      <button style="margin-bottom: 20px" class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
 		      <form method="POST" enctype="multipart/form-data">
 		        {% csrf_token %}
 		        {% if listings %}
