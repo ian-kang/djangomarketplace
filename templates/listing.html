@@ -38,7 +38,8 @@
         {% if listing.acct == user.username and listing.sold == False %}
         <button type="button"  id = "showModal" style = "float: right; margin-right: 1rem" class="btn btn-danger"  data-toggle="modal" data-target="#markSold">Mark as Sold</button>
         {% endif %}
-        <h1 onclick="location.href='/{{listing.acct}}/'">{{listing.acct}}</h1>
+        <h1 style="display:inline" onclick="location.href='/{{listing.acct}}/'">{{listing.acct}}</h1>
+        <button style="display:inline; margin-left: 50px; margin-bottom: 15px;" class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
         {% if listing %}
             {% if listing.sold == True %}
               <h1>{{listing.title}} (SOLD)</h1>
@@ -50,7 +51,7 @@
   			{% else %}
   				<p>Something strange happened to this listing</p>
         {% endif %}
-        <button class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
+        
       </div>
   </div>
   <div class="modal fade" id="markSold" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
