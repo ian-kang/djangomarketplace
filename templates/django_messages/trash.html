@@ -15,12 +15,12 @@
     <tbody>
 {% for message in message_list %}
     <tr>
-        <td style="padding:0 15px 0 50px;">{{ message.sender }}</td>
+        <td style="padding:0 15px 0 50px;"> <i> {{ message.sender }} </i> </td>
         <td>
         {{ message.subject }}
         </td>
         <td style="padding:0 0px 0 15px;">{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-        <td style="padding:0 0px 0 15px;"><a href="{% url 'messages_undelete' message.id %}">{% trans "undelete" %}</a></td>
+        <td id="delete" style="padding:0 0px 0 15px;"><a href="{% url 'messages_undelete' message.id %}">{% trans "undelete" %}</a></td>
     </tr>
 {% endfor %}
     </tbody>
@@ -35,6 +35,11 @@
 
 a#trash{
    color: #fff;
+}
+
+#delete{
+   cursor:pointer;
+   color:blue;
 }
 
 {% endblock %}

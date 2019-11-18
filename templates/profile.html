@@ -4,13 +4,10 @@
 {% block content %}
     <div class="content-section" style = "padding: 2rem">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }} </p>
-        
-	<!-- <button id="send_message" onclick="location.href='mailto:{{user.email}}';">Send Message</button> -->
-        
+          <legend class="border-bottom mb-4">Profile Info</legend>
+          <h2 class="account-heading">Your Username: {{ user.username }}</h2>
+          <p class="text-secondary">Your Email: {{ user.email }} </p>
 	</div>
       </div>
         </div>
