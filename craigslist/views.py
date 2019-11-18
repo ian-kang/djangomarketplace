@@ -104,7 +104,7 @@ class ProfileView(generic.ListView):
     context_object_name = "listings"
 
     def get_queryset(self):
-        user = self.request.path.replace('/', '').replace('p', '')
+        user = self.request.path.replace('/', '').replace('profile', '')
         print(user)
         return Listing.objects.filter(acct=user)
 

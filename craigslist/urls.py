@@ -16,7 +16,7 @@ urlpatterns = [
     
 
     path('m/messages/', include('django_messages.urls')),
-    path('p/<str:usr>/', views.ProfileView.as_view(), name='profile'), # Path for viewing own profile
+    path('profile/<str:usr>/', views.ProfileView.as_view(), name='profile'), # Path for viewing own profile
     path('<str:user>/<int:id>/', views.ListingView.as_view(), name='listing'), # Path for viewing individual listings. YYYYMMDDHHMMSS
     path('<str:user>/<int:id>/mark_sold/', views.mark_sold, name='mark_sold'),
     path('<str:usr>/', views.ForeignProfileView.as_view(), name='foreignprofile'), # Path for viewing other user page
