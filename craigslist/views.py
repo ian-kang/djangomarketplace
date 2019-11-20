@@ -54,9 +54,7 @@ def save_listing(request):
 
 def mark_sold(request, user, id):
     if request.method == 'POST':
-        pro = Listing.objects.get(listing_id= id)
-        pro.sold = True
-        pro.save()
+        Listing.objects.get(listing_id= id).delete()
         return redirect('/s/')
 
 class ItemList(generic.ListView):
