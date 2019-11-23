@@ -80,7 +80,8 @@ class ItemList(generic.ListView):
         condition = self.request.GET.get('condition','ANY')
         if condition != 'ANY':
             output = output.filter(condition=category)
-        return output
+        reverse = reversed(list(output))
+        return reverse
 
 class ListingView(generic.TemplateView):
     template_name = "listing.html"
