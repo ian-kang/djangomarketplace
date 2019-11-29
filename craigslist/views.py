@@ -68,8 +68,6 @@ class ItemList(generic.ListView):
         contains = self.request.GET.get('contains','')
         output = Listing.objects.all().filter(title__icontains=contains)
         minPrice = self.request.GET.get('min-price','0') or 0
-        print('asdfasdfas\nasdfasdfasd\n')
-        print(minPrice)
         output = output.filter(price__gte=float(minPrice))
         maxPrice = self.request.GET.get('max-price','-1') or '-1'
         if maxPrice != '-1':
@@ -79,7 +77,7 @@ class ItemList(generic.ListView):
             output = output.filter(category=category)
         condition = self.request.GET.get('condition','ANY')
         if condition != 'ANY':
-            output = output.filter(condition=category)
+            output = output.filter(condition=condition)
         reverse = reversed(list(output))
         return reverse
 
