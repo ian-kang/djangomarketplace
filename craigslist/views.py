@@ -64,7 +64,7 @@ class ItemList(generic.ListView):
     def get_queryset(self):
         cleared = self.request.GET.get('clear','0')
         if cleared == '1':
-            return Listing.objects.all()        
+            return Listing.objects.all()       
         contains = self.request.GET.get('contains','')
         output = Listing.objects.all().filter(title__icontains=contains)
         minPrice = self.request.GET.get('min-price','0') or 0
