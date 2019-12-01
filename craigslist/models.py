@@ -28,12 +28,23 @@ CATEGORIES = (
     ('LOST_AND_FOUND', 'Lost & Found'),
     ('OTHER', 'Other'),
 )
+
+LOCATIONS = (
+    ('ALDERMAN LIBRARY', 'Alderman Library'),
+    ('CLARK LIBRARY', 'Clark Library'),
+    ('CLEMONS LIBRARY', 'Clemons Library'),
+    ('THORNTON HALL', 'Thornton Hall'),
+    ('NEWCOMB HALL', 'Newcomb Hall'),
+    ('OTHER', 'Other'),
+)
+
 class Listing(models.Model):
     title = models.CharField(max_length=200)
     acct = models.CharField(max_length=20) # Hidden field to keep track of who posted what
     listing_id = models.IntegerField(default='0000')
     category = models.CharField(max_length=15, choices=CATEGORIES)
     condition = models.CharField(max_length=25, choices=CONDITIONS)
+    location = models.CharField(max_length=25, choices=LOCATIONS)
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, blank=True)
     posted = models.TimeField(auto_now_add=True)

@@ -26,6 +26,15 @@ CATEGORIES = (
     ('OTHER', 'Other'),
 )
 
+LOCATIONS = (
+    ('ALDERMAN LIBRARY', 'Alderman Library'),
+    ('CLARK LIBRARY', 'Clark Library'),
+    ('CLEMONS LIBRARY', 'Clemons Library'),
+    ('THORNTON HALL', 'Thornton Hall'),
+    ('NEWCOMB HALL', 'Newcomb Hall'),
+    ('OTHER', 'Other'),
+)
+
 class ListingForm(forms.ModelForm):
 
     acct = forms.CharField(required=True, initial="default", widget=forms.HiddenInput())
@@ -49,6 +58,13 @@ class ListingForm(forms.ModelForm):
     category = forms.ChoiceField(choices=CATEGORIES, required=True, widget=forms.Select(
         attrs={
             'class' : 'bootstrap-select',
+        }
+    ))
+
+    location = forms.ChoiceField(choices=LOCATIONS, required=True, widget=forms.Select(
+        attrs={
+            'class' : 'bootstrap-select',
+            'placeholder': 'Choose a Location',
         }
     ))
 
