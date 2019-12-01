@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    {% block wrapper %}
+    {% block wrapper %} 
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -79,7 +79,7 @@
                 </div>
             </form>
         </nav>
-        {% endblock %}
+	{% endblock %} 
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
@@ -117,7 +117,12 @@
 			
             {% if itemlist %}
 			<table class="table table-hover">
-				<tr><td>Image</td><td>Item</td><td>Price</td><td>Posted By</td></tr>
+				<tr>
+				<td>  <strong style="font-size: 20px;"> Image </strong><br/> </td>
+                                <td> <strong style="font-size: 20px;"> Item </strong><br/> </td>
+                                <td> <strong style="font-size: 20px;">Price</strong><br/> </td>
+                                <td> <strong style="font-size: 20px;"> Posted By </strong><br/> </td>
+				</tr>
 				{% for item in itemlist %}
 				<tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
 					<td>
@@ -125,12 +130,12 @@
 						style="width: 200px; height: 200px;"
                          src="{{item.images.url}}"/></td>
                     {% if item.sold == True %}
-                    <td>{{item.title}} (SOLD)</td>
+                    <td style="font-size: 20px;"> {{item.title}} (SOLD)</td>
                     {% else %}
-                    <td>{{item.title}}</td>
+                    <td style="font-size: 20px;"> {{item.title}} </td>
                     {% endif %}
-                    <td>{{item.price}}</td>
-                    <td>{{item.acct}}</td>
+                    <td style="font-size: 20px;"> ${{item.price}} </td>
+		    <td style="font-size: 20px;"> <a id="goToProfile" href="/{{item.acct}}/"> {{item.acct}} </a> </td>
 				</tr>
 				{% endfor %}
 			</table>
@@ -150,7 +155,9 @@
         todayBtn: true,
         minuteStep: 10
       });
-  </script>      
-</body>
+    </script>  
+    
+    <style type="text/css">
+    </style>
 
-</html>
+</body>
