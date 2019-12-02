@@ -5,7 +5,7 @@ Website: https://icraig-team-m.herokuapp.com/
 # Setting Up
 
 Begin by clicking the "Login" button at the top left of the website. 
-You will then be prompted to choose a Google account, please select a UVA email.
+You will then be prompted to choose a Google account, a UVA email is preferred, but not required.
 If successful, you will redirected back to the homepage. Confirm that your computing id and "Logout" button are there in place of the "Login" button. 
 
 # Your Profile
