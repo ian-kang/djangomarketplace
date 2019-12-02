@@ -74,7 +74,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #007bff;
+    background: #1888ff;
     color: #fff;
     transition: all 0.3s;
 }
@@ -92,6 +92,13 @@ a:focus {
 #sidebar .sidebar-header {
     font-size: 40px;
     margin-top: 30px;
+    text-align: center;
+    background: #007bff;
+}
+
+#sidebar .sidebar-secondary {
+    font-size: 30px;
+    
     text-align: center;
     background: #007bff;
 }
@@ -162,6 +169,32 @@ a.article:hover {
     margin-bottom: 15px;
     margin-left: 30px;
     width: 220px;
+}
+
+#apply{
+ background-color: #9ebcdd;
+ color: #fff;
+ border: 1px solid #1888ff;
+}
+
+#apply:hover{
+    border: 1px solid #1888ff;
+    color: #1888ff;
+    background: #fff;
+    box-shadow: 0px 0px 1px #777;
+}
+
+#clear{
+ background-color: #9ebcdd;
+ color: #fff;
+ border: 1px solid #9ebcdd;
+}
+
+#clear:hover{
+    border: 1px solid #1888ff;
+    color: #1888ff;
+    background: #fff;
+    box-shadow: 0px 0px 1px #777;
 }
 /* ---------------------------------------------------
     CONTENT STYLE
