@@ -9,7 +9,7 @@ $("#3").on('click', function () {
 newLocation(38.033303, -78.507703);
 });
 $("#4").on('click', function () {
-newLocation(38.034847, -78.5086006);
+newLocation(38.036357, -78.506080);
 });
 $("#5").on('click', function () {
 newLocation(38.0325896,-78.51063);
