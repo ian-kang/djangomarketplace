@@ -9,6 +9,7 @@ from craigslist.views import index, create_listing, LogoutView, ItemList, Locati
 from django.core.files.uploadedfile import SimpleUploadedFile
 from craigslist.forms import CONDITIONS 
 from craigslist.forms import CATEGORIES
+from craigslist.forms import LOCATIONS
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
@@ -54,7 +55,8 @@ class ViewTests(TestCase):
             'price': 42000,
             'description': 'this is a car',
             'category': CATEGORIES[0][0],
-            'condition': CONDITIONS[0][0]
+            'condition': CONDITIONS[0][0],
+            'location': LOCATIONS[0][0]
         } 
         form = ListingForm(files = file_dict, data=form_data)
         self.assertTrue(form.is_valid())
