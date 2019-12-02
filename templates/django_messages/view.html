@@ -17,10 +17,8 @@
     <br /><br />
 </dl>
 
-{% ifequal message.recipient.pk user.pk %}
 <a id="go_back" href="../../../../m/messages/inbox" class="button">{% trans "Go Back" %}</a>
 <a id="reply" href="{% url 'messages_reply' message.id %}" class="button">{% trans "Reply" %}</a>
-{% endifequal %}
 <a href="{% url 'messages_delete' message.id %}" class="button">{% trans "Delete" %}</a>
 
 {% comment %}Example reply_form integration
