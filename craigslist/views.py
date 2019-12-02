@@ -42,14 +42,15 @@ def save_listing(request):
         condition = request.POST['category']
         price = request.POST['price']
         description = request.POST['description']
+        location = request.POST['location']
         images = request.POST['images']
         acct = request.POST['acct']
         listing_id = request.POST['listing_id']
         print('JAJAJAJA', listing_id)
 
-        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images, acct=acct, listing_id=listing_id)
+        new_listing = CreateListing(title=title, category=category, condition=condition, price=price, description=description, images=images, acct=acct, listing_id=listing_id, location=location)
         new_listing.save()
-    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct, 'listing_id':listing_id}
+    args = {'title':title, 'category':category, 'condition':condition, 'price':price, 'description':description, 'images':images, 'acct':acct, 'listing_id':listing_id, 'location':location}
     return render(request, 'create_listing.html',{'message': "Success! Your posting has been submitted!"}, args)
 
 def mark_sold(request, user, id):
@@ -78,6 +79,9 @@ class ItemList(generic.ListView):
         condition = self.request.GET.get('condition','ANY')
         if condition != 'ANY':
             output = output.filter(condition=condition)
+        location = self.request.GET.get('location','ANY')
+        if location != 'ANY':
+            output = output.filter(location=location)
         reverse = reversed(list(output))
         return reverse
 

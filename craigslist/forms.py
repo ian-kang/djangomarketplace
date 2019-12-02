@@ -64,9 +64,9 @@ class ListingForm(forms.ModelForm):
     location = forms.ChoiceField(choices=LOCATIONS, required=True, widget=forms.Select(
         attrs={
             'class' : 'bootstrap-select',
-            'placeholder': 'Choose a Location',
         }
     ))
+    
 
     condition = forms.ChoiceField(choices=CONDITIONS, required=True, widget=forms.Select(
         attrs={
@@ -88,7 +88,7 @@ class ListingForm(forms.ModelForm):
 
         model = Listing
 
-        fields = ['title', 'price', 'description', 'images', 'category', 'condition', 'acct', 'listing_id']
+        fields = ['title', 'price', 'description', 'images', 'category', 'location', 'condition', 'acct', 'listing_id']
 
 class UserForm(ModelForm):
     class Meta:
@@ -102,7 +102,7 @@ class UserForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'location', 'birth_date')
+        fields = ('bio', 'birth_date')
 
 
 class PostForm(ModelForm):
