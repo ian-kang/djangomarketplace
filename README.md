@@ -1,7 +1,5 @@
 # App Documentation 
 
-Write up some basic app documentation for Prof. Sherriff and Prof. Horton on how to use your app. Put anything and everything in here that you think we need to grade your app! This could include: help/instructions, information about creating accounts, any test accounts you have that we can use, any key/exciting features you want to make sure that we see and give you credit form, etc. Please place this in the root of your GitHub repository in the README.md file. This needs to include a link to your app!!!
-
 Website: https://icraig-team-m.herokuapp.com/
 
 # Setting Up
