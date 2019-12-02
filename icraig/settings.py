@@ -198,7 +198,6 @@ django_heroku.settings(locals())
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '200446462519-9nrggfc8md7q62k485tbsiikbm6ds465.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'N8zOCeL-kNMss9rgwhYS6iuG'
-SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['virginia.edu']
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/accounts/login/'
 SOCIAL_AUTH_BACKEND_ERROR_URL = '/accounts/login/'
 
