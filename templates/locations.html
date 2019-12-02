@@ -10,6 +10,17 @@
     {% block staticfiles %}
     <script src="{% static 'js/locations.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/locations.css' %}" type="text/css" />
+    <style type="text/css">
+
+        a#location {
+            color: #fff;
+        }
+        
+        a#home {
+            color:#73b0ff;
+        }
+        
+        </style>
     {% endblock %}
 </head>
 <body>
@@ -113,17 +124,7 @@
  </div>
  
 
-<style type="text/css">
 
-a#location {
-    color: #fff;
-}
-
-a#home {
-    color:#73b0ff;
-}
-
-</style>
 
 {% endblock %}
 </body>
