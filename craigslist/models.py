@@ -34,7 +34,7 @@ LOCATIONS = (
     ('CLARK LIBRARY', 'Clark Library'),
     ('CLEMONS LIBRARY', 'Clemons Library'),
     ('THORNTON HALL', 'Thornton Hall'),
-    ('NEWCOMB HALL', 'Newcomb Hall'),
+    ('CURRY SCHOOL', 'Curry School'),
     ('OTHER', 'Other'),
 )
 
