@@ -41,7 +41,9 @@
               <a onclick="location.href='/{{listing.acct}}/'">Sold by: {{listing.acct}}</a>
             </li>
             <li>
+	      {% if listing.acct != user.username %}
               <a  onclick="location.href=messageUser()">Message seller</a>
+              {% endif %}
             </li>
             {% if listing.acct == user.username and listing.sold == False %}
               <li>
