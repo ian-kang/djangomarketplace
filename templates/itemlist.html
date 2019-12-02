@@ -27,63 +27,63 @@
     {% block wrapper %} 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
-            <ul class="list-unstyled components">
-                <form method="get">
-                <div class="row" style="margin-bottom: 20px">
-                    <input name="contains" type="hidden" id="query" value="">
-                    <li>
-                    <div class = "sidebaritem">
-                        Min Price: <input class="form-control" type="number" placeholder="0" name="min-price" id="minPrice">
+        <nav id="sidebar" class>
+            <ul class="list-unstyled components" id="filters">
+                <form method="get" >
+                    <div class="row" style="margin-bottom: 20px">
+                        <input name="contains" type="hidden" id="query" value="">
+                        <li>
+                            <div class = "sidebaritem">
+                                Min Price: <input class="form-control" type="number" placeholder="0" name="min-price" id="minPrice">
+                            </div>
+                        </li>
+                        <li>
+                            <div class = "sidebaritem">
+                                Max Price: <input class="form-control" type="number" placeholder="99999" name="max-price" id="maxPrice">
+                            </div>
+                        </li>
+                        <li>
+                            <div class = "sidebaritem">
+                                Category: <select name="category" class="bootstrap-select form-control" id="id_category">
+                                <option value="ANY">Any</option>
+                                <option value="FURNITURE">Furniture</option>
+                                <option value="TEXTBOOKS">Textbooks</option>
+                                <option value="HOUSING">Housing</option>
+                                <option value="SERVICES">Services</option>
+                                <option value="GIGS">Gigs</option>
+                                <option value="LOST_AND_FOUND">Lost &amp; Found</option>
+                                <option value="OTHER">Other</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class = "sidebaritem">
+                                Condition: <select name="condition" class="bootstrap-select form-control" id="id_condition">
+                                <option value="ANY">Any</option>
+                                <option value="NEW">New</option>
+                                <option value="OPEN_BOX">Open Box</option>
+                                <option value="USED">Used</option>
+                                <option value="REFURBISHED">Refurbished</option>
+                                <option value="FOR_PARTS">For Parts or Not Working</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class = "sidebaritem">
+                            <div style="margin-top: 25px">
+                                <button value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-dark tx-tfm">Apply Filters</button>
+                            </div>
+                            <div style="margin-top: 25px">
+                                <button value="1" name="clear" type="submit" class=" btn btn-block mybtn btn-danger tx-tfm">Clear Filters</button>
+                            </div>
+                        </li>
                     </div>
-                    </li>
-                    <li>
-                    <div class = "sidebaritem">
-                        Max Price: <input class="form-control" type="number" placeholder="99999" name="max-price" id="maxPrice">
-                    </div>
-                    </li>
-                    <li>
-                    <div class = "sidebaritem">
-                        Category: <select name="category" class="bootstrap-select form-control" id="id_category">
-                        <option value="ANY">Any</option>
-                        <option value="FURNITURE">Furniture</option>
-                        <option value="TEXTBOOKS">Textbooks</option>
-                        <option value="HOUSING">Housing</option>
-                        <option value="SERVICES">Services</option>
-                        <option value="GIGS">Gigs</option>
-                        <option value="LOST_AND_FOUND">Lost &amp; Found</option>
-                        <option value="OTHER">Other</option>
-                        </select>
-                    </div>
-                     </li>
-                     <li>
-                    <div class = "sidebaritem">
-                        Condition: <select name="condition" class="bootstrap-select form-control" id="id_condition">
-                        <option value="ANY">Any</option>
-                        <option value="NEW">New</option>
-                        <option value="OPEN_BOX">Open Box</option>
-                        <option value="USED">Used</option>
-                        <option value="REFURBISHED">Refurbished</option>
-                        <option value="FOR_PARTS">For Parts or Not Working</option>
-                        </select>
-                    </div>
-                    </li>
-                    <li class = "sidebaritem">
-                    <div style="margin-top: 25px">
-                        <button value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-dark tx-tfm">Apply Filters</button>
-                    </div>
-                    <div style="margin-top: 25px">
-                        <button value="1" name="clear" type="submit" class=" btn btn-block mybtn btn-danger tx-tfm">Clear Filters</button>
-                    </div>
-                    </li>
-                </div>
-            </form>
+                </form>
+            </ul>
         </nav>
-	{% endblock %} 
+    {% endblock %} 
         {% block pagecontent %}
         <!-- Page Content  -->
         <div id="content">
-            
             <script>
              // the following two lines of code were retrieved from https://stackoverflow.com/a/12049703
              var $_GET=[];
@@ -111,38 +111,40 @@
 
                 <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Condensed view</label>
+                        <label class="custom-control-label" for="defaultUnchecked">Condensed View</label>
                 </div>
             </div>
-			
+            
             {% if itemlist %}
-			<table class="table table-hover">
-				<tr>
-				<td>  <strong style="font-size: 20px;"> Image </strong><br/> </td>
-                                <td> <strong style="font-size: 20px;"> Item </strong><br/> </td>
-                                <td> <strong style="font-size: 20px;">Price</strong><br/> </td>
-                                <td> <strong style="font-size: 20px;"> Posted By </strong><br/> </td>
-				</tr>
-				{% for item in itemlist %}
-				<tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
-					<td>
-						<img class = "listImage"
-						style="width: 200px; height: 200px;"
-                         src="{{item.images.url}}"/></td>
-                    {% if item.sold == True %}
-                    <td style="font-size: 20px;"> {{item.title}} (SOLD)</td>
-                    {% else %}
-                    <td style="font-size: 20px;"> {{item.title}} </td>
-                    {% endif %}
-                    <td style="font-size: 20px;"> ${{item.price}} </td>
-		    <td style="font-size: 20px;"> <a id="goToProfile" href="/{{item.acct}}/"> {{item.acct}} </a> </td>
-				</tr>
-				{% endfor %}
-			</table>
-			<!-------------------- /New -------------------->
-				{% else %}
-					<p> No listings available</p>
-				{% endif %}	
+            <table class="table table-hover">
+                <tr id="headers">
+                    <td>  <strong style="font-size: 20px;"> Image </strong><br/> </td>
+                                    <td> <strong style="font-size: 20px;"> Item </strong><br/> </td>
+                                    <td> <strong style="font-size: 20px;"> Description </strong><br/> </td>
+                                    <td> <strong style="font-size: 20px;">Price</strong><br/> </td>
+                                    <td> <strong style="font-size: 20px;"> Posted By </strong><br/> </td>
+                </tr>
+                    {% for item in itemlist %}
+                    <tr onclick="location.href='/{{item.acct}}/{{item.listing_id}}'">
+                        <td>
+                            <img class = "listImage"
+                            style="width: 200px; height: 200px;"
+                             src="{{item.images.url}}"/>
+                        </td>
+                        {% if item.sold == True %}
+                            <td style="font-size: 20px;"> {{item.title|truncatechars:30}} (SOLD)</td>
+                        {% else %}
+                            <td style="font-size: 20px;"> {{item.title|truncatechars:30}} </td>
+                        {% endif %}
+                        <td style="font-size: 20px;"> {{item.description|truncatechars:70}} </td>
+                        <td style="font-size: 20px;"> ${{item.price}} </td>
+                        <td style="font-size: 20px;"> <a id="goToProfile" href="/{{item.acct}}/"> {{item.acct}} </a> </td>
+                    </tr>
+                {% endfor %}
+            </table>
+                {% else %}
+                    <p> No listings available</p>
+                {% endif %} 
         </div>
         
   
