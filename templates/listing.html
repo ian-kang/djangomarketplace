@@ -65,9 +65,9 @@
     <div id="content" class = "container" style = "max-width: 3000px; margin: 20px">
       <div class = "row " style = "border-bottom-style: solid; border-width: 1px; border-color: #dee2e6; margin-bottom: 20px;">
       {% if listing %}
-          <h1 >{{listing.title}}</h1>
+          <h1 >{{listing.title}}: ${{listing.price}}</h1>
           </div>
-          <div class = "row">
+          <div class = "row" >
         
           <div class = "col" style = "border-right-style: solid; border-width: 1px; border-color: #dee2e6;">
           <div style = "font-size: 20px;">Seller's description: {{listing.description}}</div>
@@ -75,6 +75,10 @@
         <div class = "col">
             <img class = "listImage" style="width: 500px; height: 500px; float: left" src="{{listing.images.url}}"/>
             </div>
+            
+      </div>
+      <div class ="row" style = "border-top-style: solid; border-width: 1px; border-color: #dee2e6; margin-top: 20px;">
+        <div style = "font-size: 20px;">Preferred meeting location: {{listing.location}}</div>
       </div>
   		{% else %}
   			<p>Something strange happened to this listing</p>
