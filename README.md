@@ -10,7 +10,7 @@ If successful, you will redirected back to the homepage. Confirm that your compu
 
 # Your Profile
 
-Click on the "Profile" button at the top right. Your username will be displayed here as well as all the listings you have posted. If you haven't made a listing yet, the message "LISTINGS ARE NOT HERE" should be displayed under your email. 
+Click on the "Profile" button at the top right. Your username will be displayed here as well as all the listings you have posted. If you haven't made a listing yet, the message "No listings available" should be displayed under your email. 
    
 # Selling Something
 
