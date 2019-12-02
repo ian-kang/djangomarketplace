@@ -26,6 +26,15 @@ CATEGORIES = (
     ('OTHER', 'Other'),
 )
 
+LOCATIONS = (
+    ('ALDERMAN LIBRARY', 'Alderman Library'),
+    ('CLARK LIBRARY', 'Clark Library'),
+    ('CLEMONS LIBRARY', 'Clemons Library'),
+    ('THORNTON HALL', 'Thornton Hall'),
+    ('NEWCOMB HALL', 'Newcomb Hall'),
+    ('OTHER', 'Other'),
+)
+
 class ListingForm(forms.ModelForm):
 
     acct = forms.CharField(required=True, initial="default", widget=forms.HiddenInput())
@@ -52,6 +61,13 @@ class ListingForm(forms.ModelForm):
         }
     ))
 
+    location = forms.ChoiceField(choices=LOCATIONS, required=True, widget=forms.Select(
+        attrs={
+            'class' : 'bootstrap-select',
+        }
+    ))
+    
+
     condition = forms.ChoiceField(choices=CONDITIONS, required=True, widget=forms.Select(
         attrs={
             'class' : 'bootstrap-select', #rounded_list
@@ -72,7 +88,7 @@ class ListingForm(forms.ModelForm):
 
         model = Listing
 
-        fields = ['title', 'price', 'description', 'images', 'category', 'condition', 'acct', 'listing_id']
+        fields = ['title', 'price', 'description', 'images', 'category', 'location', 'condition', 'acct', 'listing_id']
 
 class UserForm(ModelForm):
     class Meta:
@@ -86,7 +102,7 @@ class UserForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'location', 'birth_date')
+        fields = ('bio', 'birth_date')
 
 
 class PostForm(ModelForm):
