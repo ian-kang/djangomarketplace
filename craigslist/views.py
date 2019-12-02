@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.views.generic import FormView, TemplateView
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect
-from .models import Listing, Post
+from .models import Listing, Post, Profile
 from .forms import ListingForm, User, UserForm, ProfileForm, PostForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -116,6 +116,18 @@ class ForeignProfileView(generic.ListView): # For viewing other users' profile p
     template_name = "foreign_profile.html"
     context_object_name = "listings"
 
+    def get(self, *args, **kwargs):
+        user = self.request.path.replace('/', '').strip()
+        good = False
+        for u in Profile.objects.all():
+            if u.user.username == user:
+                good = True
+                break
+        if not good:
+            return redirect("404.html")
+        else:
+            return super(ForeignProfileView, self).get(*args, **kwargs)
+    
     def get_queryset(self):
         user = self.request.path.replace('/', '')
         return Listing.objects.filter(acct=user)
@@ -147,5 +159,3 @@ def update_profile(request):
 #    return render(request, 'profile.html', context)
     args = {'user_form': user_form,'profile_form': profile_form}
     return render(request, 'craigslist/profile.html', args)
-
-
