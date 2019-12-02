@@ -10,11 +10,13 @@ If successful, you will redirected back to the homepage. Confirm that your compu
 
 # Your Profile
 
-Click on the "Profile" button at the top right. Your username and email will be displayed here as well as all the listings you have posted. If you haven't made a listing yet, the message "LISTINGS ARE NOT HERE" should be displayed under your email. 
+Click on the "Profile" button at the top right. Your username will be displayed here as well as all the listings you have posted. If you haven't made a listing yet, the message "LISTINGS ARE NOT HERE" should be displayed under your email. 
    
 # Selling Something
 
 To sell something, click on the "Sell" button to be redirected to the Create Listing page. Here, you will fill in the fields to describe the item/service. Clicking submit, will post the listing for others to view. Clicking on any of the buttons on the top navbar will cancel the process and not upload info that has been filled in.
+
+To delete listings you can click on one of your listings and then select the "Mark as Sold" button. This will remove the listing from your profile.
    
 # Listings & Other Profiles
 
@@ -22,11 +24,11 @@ Click the "Get started!" button to be directed to the home page where all listin
 
 On the left, you can utilize the sidebar to filter through listings according to certain parameters, including: price range, category, and condition. By clicking "Apply Filters", the page will refresh and give you the listings that fit the desired criteria. "Clear Filters" will reset everything to show all listings. 
 
-The search bar at the top left can be used at any time to look up listings by keywords.
+The search bar at the top middle can be used at any time to look up listings by keywords.
 
 In order to get more information about a particular listing, click anywhere on the row besides the username under the "Posted By" column (doing this will redirect you to the user's profile page). From there you can get a more up close view of the user's uploaded image and read the full description.
 
-From the listing's page, you can also click on the username of the seller to go to their profile. Information displayed will be similar to your own profile in that their username, email, and listings will be shown.
+From the listing's page, you can also click on the username of the seller to go to their profile. Information displayed will be similar to your own profile in that their username and listings will be shown. You can also click "Back" to go back to the main listings page.
 
 # Mail
 
