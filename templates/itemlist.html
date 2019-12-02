@@ -20,7 +20,36 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    {% endblock %}
+    
+<style type="text/css">
+#sidebar{
+ background: #1888ff;
+}
+#apply{
+ background-color: #9ebcdd;
+ color: #fff;
+ border: 1px solid #1888ff;
+}
+#apply:hover{
+    border: 1px solid #1888ff;
+    color: #1888ff;
+    background: #fff;
+    box-shadow: 0px 0px 1px #777;
+}
+#clear{
+ background-color: #9ebcdd;
+ color: #fff;
+ border: 1px solid #9ebcdd;
+}
+#clear:hover{
+    border: 1px solid #1888ff;
+    color: #1888ff;
+    background: #fff;
+    box-shadow: 0px 0px 1px #777;
+}
+</style>
+
+{% endblock %}
 </head>
 
 <body>
@@ -73,7 +102,7 @@
                                 <button id="apply" value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-dark tx-tfm">Apply Filters</button>
                             </div>
                             <div style="margin-top: 25px">
-                                <button value="1" id="clear" type="submit" class=" btn btn-block mybtn btn-danger tx-tfm">Clear Filters</button>
+                                <button id="clear" value="1" name="apply" type="submit" class=" btn btn-block mybtn btn-danger tx-tfm">Clear Filters</button>
                             </div>
                         </li>
                     </div>
