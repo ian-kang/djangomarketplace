@@ -31,29 +31,46 @@
 <body>
   {% block wrapper %}
   <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+          <div class="sidebar-header">
+              Seller Info
+          </div>
+          <ul class="list-unstyled components">
+                  <li>
+                      <a onclick="location.href='/{{listing.acct}}/'">Sold by: {{listing.acct}}</a>
+                  </li>
+                  <li>
+                      <a  onclick="location.href=messageUser()">Message seller</a>
+                  </li>
+                  {% if listing.acct == user.username and listing.sold == False %}
+              <li>
+                <a id = "showModal" data-toggle="modal" data-target="#markSold">Mark as Sold</a>
+              </li>
+        {% endif %}
+      </nav>
       {% endblock %}
       {% block pagecontent %}
       <!-- Page Content  -->
-      <div id="content">
-        {% if listing.acct == user.username and listing.sold == False %}
-        <button type="button"  id = "showModal" style = "float: right; margin-right: 1rem" class="btn btn-danger"  data-toggle="modal" data-target="#markSold">Mark as Sold</button>
-        {% endif %}
-        <h1 style="display:inline" onclick="location.href='/{{listing.acct}}/'">{{listing.acct}}</h1>
-        <button style="display:inline; margin-left: 50px; margin-bottom: 15px;" class="btn btn-outline-info" onclick="location.href=messageUser()">Message</button>
+      <div id="content" class = "container" style = "max-width: 3000px; margin: 20px">
+        <div class = "row " style = "border-bottom-style: solid; border-width: 1px; border-color: #dee2e6; margin-bottom: 20px;">
         {% if listing %}
-            {% if listing.sold == True %}
-              <h2>{{listing.title}} (SOLD)</h2>
-            {% else %}
-              <h2>Item: {{listing.title}}</h2>
-            {% endif %}
-            <img class = "listImage" style="width: 500px; height: 500px; float: left" src="{{listing.images.url}}"/>
-            <h3 style = "padding: 1rem; float: left;">Description: {{listing.description}}</h3>
+            <h1 >{{listing.title}}</h1>
+            </div>
+            <div class = "row">
+          
+            <div class = "col" style = "border-right-style: solid; border-width: 1px; border-color: #dee2e6;">
+            <div style = "font-size: 20px;">Seller's description: {{listing.description}}</div>
+          </div>
+          <div class = "col">
+              <img class = "listImage" style="width: 500px; height: 500px; float: left" src="{{listing.images.url}}"/>
+              </div>
+        </div>
   			{% else %}
   				<p>Something strange happened to this listing</p>
         {% endif %}
-        
-      </div>
-  </div>
+      
+    </div>
   <div class="modal fade" id="markSold" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
